@@ -1,5 +1,6 @@
 <template>
     <main id="applications-select-container">
+        <div></div>
         <div @click="applicationTypeChosen('wl')" class="applications-select-option" style="background-image: url('https://cdn.mikut.dev/project-galaxy/img/ems-bg.png')">
             <div>
                 <h1>Whitelist</h1>
@@ -51,6 +52,18 @@ export default defineComponent({
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
+    position: relative;
+
+    & > div:first-child {
+        position: absolute;
+        width: 350px;
+        height: 100%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: transparent;
+        z-index: 999;
+    }
 }
 .applications-select-option {
     width: 100%;

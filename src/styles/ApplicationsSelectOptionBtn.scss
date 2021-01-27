@@ -1,0 +1,25 @@
+@import "variables.scss";
+
+.applications-select-option-btn {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 1.5rem;
+    color: white;
+    background: transparent;
+    transition: background .2s;
+    padding: 1rem;
+
+    &:hover {
+        background: $c5;
+    }
+}
+
+/* MEDIA QUERIES */
+@media screen and (max-width: 768px) {
+    .applications-select-option-btn {
+        background: $c5;
+    }
+}

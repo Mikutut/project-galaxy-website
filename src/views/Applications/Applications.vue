@@ -1,7 +1,9 @@
 <template>
     <div class="view-wrapper">
         <Header />
-        <router-view />
+        <transition name="route-change-fade" mode="out-in">
+            <router-view />
+        </transition>
         <Footer />
     </div>
 </template>

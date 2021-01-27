@@ -66,7 +66,7 @@ export default defineComponent({
     setup() {
         onMounted(() => {
             setTimeout(() => {
-                document.getElementById("app").scrollTo({ top: document.getElementById("rules-list-title").offsetTop, left: 0, behavior: 'smooth' });
+                document.getElementById("app").scrollTo({ top: document.getElementsByTagName('header')[0].offsetTop + document.getElementsByTagName('header')[0].offsetHeight + 1, left: 0, behavior: 'smooth' });
             }, 1000);
         });
         return {};

@@ -2,7 +2,10 @@ import { createRouter, createWebHistory, RouteRecordRaw, RouterScrollBehavior } 
 import Home from "../views/Home.vue";
 import Error404 from "../views/404.vue";
 import Rules from "../views/Rules.vue";
-import Applications from "../views/Applications.vue";
+import Applications from "../views/Applications/Applications.vue";
+import ApplicationsSelect from "../views/Applications/ApplicationsSelect.vue";
+import ApplicationsWL from "../views/Applications/ApplicationsWL.vue";
+import ApplicationsFraction from "../views/Applications/ApplicationsFraction.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -18,7 +21,24 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/project-galaxy/aplikacje',
     name: 'Applications',
-    component: Applications
+    component: Applications,
+    children: [
+      {
+        path: '/project-galaxy/aplikacje/',
+        name: 'ApplicationsSelect',
+        component: ApplicationsSelect
+      },
+      {
+        path: '/project-galaxy/aplikacje/wl',
+        name: 'ApplicationsWL',
+        component: ApplicationsWL
+      },
+      {
+        path: '/project-galaxy/aplikacje/fraction',
+        name: 'ApplicationsFraction',
+        component: ApplicationsFraction
+      }
+    ]
   },
   {
     path: '/project-galaxy/:pathName(.*)*',
@@ -28,13 +48,18 @@ const routes: Array<RouteRecordRaw> = [
 ]
 
 const scrollBehavior: RouterScrollBehavior = () => {
-  return { top: 0, left: 0 };
+  return new Promise((res) => {
+    setTimeout(() => {
+      document.getElementById("app").scrollTo({ top: document.getElementsByTagName('header')[0].offsetTop + document.getElementsByTagName('header')[0].offsetHeight + 1, left: 0, behavior: 'smooth' });
+      res();
+    }, 1000);
+  });
 }
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
-  scrollBehavior
+  scrollBehavior: scrollBehavior
 })
 
 export default router

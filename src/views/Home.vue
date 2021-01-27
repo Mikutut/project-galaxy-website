@@ -69,12 +69,6 @@ export default defineComponent({
             }, 5000);
         });
 
-        onMounted(() => {
-            setTimeout(() => {
-                document.getElementById("app").scrollTo({ top: document.getElementsByTagName('main')[0].offsetTop + 1, left: 0, behavior: 'smooth' });
-            }, 1000);
-        });
-
         onBeforeUnmount(() => {
             clearInterval(discordFetchInterval);
         });

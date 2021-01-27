@@ -6,7 +6,7 @@
             </a>
             <nav>
                 <button @click="goToTab('Rules')">Regulamin</button>
-                <button @click="goToTab('Applications')">Aplikacje</button>
+                <button @click="goToTab('ApplicationsSelect')">Aplikacje</button>
                 <button>Przycisk 4</button>
                 <button data-discord @click="goToSite('https://discord.gg/Xnnj2z4vte')">Discord</button>
             </nav>

@@ -1,5 +1,5 @@
 <template>
-    <main id="applications-wl-container">
+    <main id="applications-support-container">
         <div>
             <button class="applications-select-option-btn" @click="goBackToSelectScreen()">Wróć do ekranu wyboru</button>
         </div>
@@ -28,12 +28,12 @@ export default defineComponent({
 @import "../../styles/ApplicationsSelectOptionBtn.scss";
 @import "../../styles/variables.scss";
 
-#applications-wl-container {
+#applications-support-container {
     width: 100%;
     min-height: 100%;
     height: auto;
     flex: 1 0;
-    background: url("https://cdn.mikut.dev/project-galaxy/img/wl-bg.png"); 
+    background: url("https://cdn.mikut.dev/project-galaxy/img/lesioszef.png"); 
     background-size: cover; 
     background-repeat: no-repeat;
     background-position: center; 

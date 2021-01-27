@@ -6,6 +6,7 @@ import Applications from "../views/Applications/Applications.vue";
 import ApplicationsSelect from "../views/Applications/ApplicationsSelect.vue";
 import ApplicationsWL from "../views/Applications/ApplicationsWL.vue";
 import ApplicationsFraction from "../views/Applications/ApplicationsFraction.vue";
+import ApplicationsSupport from "../views/Applications/ApplicationsSupport.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -37,8 +38,14 @@ const routes: Array<RouteRecordRaw> = [
         path: '/project-galaxy/aplikacje/fraction',
         name: 'ApplicationsFraction',
         component: ApplicationsFraction
+      },
+      {
+        path: '/project-galaxy/aplikacje/support',
+        name: 'ApplicationsSupport',
+        component: ApplicationsSupport
       }
-    ]
+    ],
+    props: true
   },
   {
     path: '/project-galaxy/:pathName(.*)*',

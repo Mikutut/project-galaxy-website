@@ -53,6 +53,18 @@ export default defineComponent({
         let discordFetchInterval = 0;
 
         onBeforeMount(() => {
+            axios({
+                method: "get",
+                url: "https://discord.com/api/guilds/770654187418812427/widget.json",
+            })
+                .then((res: AxiosResponse<unknown>) => {
+                    discordMembersCount.value = JSON.parse(res.request.responseText).members.length; 
+                    discordMembersActiveCount.value = JSON.parse(res.request.responseText).members.filter((mem: Record<string, unknown>) => mem.status === "online").length;
+                })
+                .catch(() => {
+                    discordMembersCount.value = 0;
+                    discordMembersActiveCount.value = 0;
+                });
             discordFetchInterval = setInterval(async () => {
             axios({
                 method: "get",
@@ -104,13 +116,13 @@ main {
     width: 100%;
 
     &:nth-child(1) {
-        background-image: url("https://cdn.mikut.dev/project-galaxy/img/crime-bg.png");
+        background-image: url("https://cdn.mikut.dev/project-galaxy/img/bg9.png");
     }
     &:nth-child(2) {
-        background-image: url("https://cdn.mikut.dev/project-galaxy/img/lspd-bg.png");
+        background-image: url("https://cdn.mikut.dev/project-galaxy/img/bg7.png");
     }
     &:nth-child(3) {
-        background-image: url("https://cdn.mikut.dev/project-galaxy/img/ems-bg.png");
+        background-image: url("https://cdn.mikut.dev/project-galaxy/img/car-bg1.png");
     }
 
     & > div {

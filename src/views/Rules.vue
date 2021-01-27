@@ -53,7 +53,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted } from 'vue';
+import { defineComponent } from 'vue';
 import Header from "../components/Header.vue";
 import Footer from "../components/Footer.vue";
 
@@ -64,11 +64,7 @@ export default defineComponent({
         Footer
     },
     setup() {
-        onMounted(() => {
-            setTimeout(() => {
-                document.getElementById("app").scrollTo({ top: document.getElementsByTagName('header')[0].offsetTop + document.getElementsByTagName('header')[0].offsetHeight + 1, left: 0, behavior: 'smooth' });
-            }, 1000);
-        });
+        
         return {};
     }
 });

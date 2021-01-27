@@ -1,40 +1,60 @@
 <template>
-    <main id="applications-select-container">
-        <div></div>
-        <div @click="applicationTypeChosen('wl')" class="applications-select-option" style="background-image: url('https://cdn.mikut.dev/project-galaxy/img/ems-bg.png')">
-            <div>
-                <h1>Whitelist</h1>
-                <p>Chciałbyś rozpocząć swoją przygodę na serwerze? Kliknij tutaj i złóż podanie o dopisanie do whitelisty!</p>
+    <div id="applications-select-container" v-if="route.params.mode === 'default'">
+        <main>
+            <div @click="router.replace({ name: 'ApplicationsWL' })" class="applications-select-option" style="background-image: url('https://cdn.mikut.dev/project-galaxy/img/wl-bg.png')">
+                <div>
+                    <h1>Whitelist</h1>
+                    <p>Chciałbyś rozpocząć swoją przygodę na serwerze? Kliknij tutaj i złóż podanie o dopisanie do whitelisty!</p>
+                </div>
             </div>
-        </div>
-        <div @click="applicationTypeChosen('fraction')" class="applications-select-option" style="background-image: url('https://cdn.mikut.dev/project-galaxy/img/crime-bg.png')">
-            <div>
-                <h1>Frakcja</h1>
-                <p>Znudziły ci się dotychczasowe prace? Chcesz poczuć powiew świeżości? Kliknij tutaj i złóż podanie o założenie nowej frakcji!</p>
+            <div @click="router.replace({ name: 'ApplicationsSelect', params: { mode: 'fraction' } })" class="applications-select-option" style="background-image: url('https://cdn.mikut.dev/project-galaxy/img/crime-bg2.png')">
+                <div>
+                    <h1>Frakcja</h1>
+                    <p>Znudziły ci się dotychczasowe prace? Chcesz poczuć powiew świeżości? Kliknij tutaj i złóż podanie o założenie nowej / dołączenie do frakcji!</p>
+                </div>
             </div>
-        </div>
-    </main>
+            <div @click="router.replace({ name: 'ApplicationsSupport' })" class="applications-select-option" style="background-image: url('https://cdn.mikut.dev/project-galaxy/img/lesioszef.png')">
+                <div>
+                    <h1>Sprawa do administracji</h1>
+                    <p>Masz jakąś pilną sprawę do administracji? Kliknij tutaj i złóż swoje zapytanie do administracji!</p>
+                </div>
+            </div>
+        </main>
+    </div>
+    <div id="applications-select-container" v-else-if="route.params.mode === 'fraction'">
+        <button class="applications-select-option-btn" @click="goBackToSelectScreen()" >Wróć do ekranu wyboru</button>
+        <main>
+            <div @click="router.replace({ name: 'ApplicationsLSPD' })" class="applications-select-option" style="background-image: url('https://cdn.mikut.dev/project-galaxy/img/lspd-bg.png')">
+                <div>
+                    <h1>LSPD</h1>
+                    <p>Pragniesz zostać najlepszym stróżem prawa w mieście! Kliknij tutaj i zgłoś się jako kandydat na policjanta!</p>
+                </div>
+            </div>
+            <div @click="router.replace({ name: 'ApplicationsEMS' })" class="applications-select-option" style="background-image: url('https://cdn.mikut.dev/project-galaxy/img/ems-bg.png')">
+                <div>
+                    <h1>EMS</h1>
+                    <p>Twoim marzeniem od zawsze było ratowanie żyć innych? Kliknij tutaj i zgłoś się jako kandydat na ratownika medycznego!</p>
+                </div>
+            </div>
+        </main>
+    </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { useRouter, Router } from "vue-router";
+import { useRouter, Router, RouteLocationNormalized, useRoute } from "vue-router";
 
 export default defineComponent({
     name: "ApplicationsSelect",
     setup() {
         const router: Router = useRouter();
+        const route: RouteLocationNormalized = useRoute();
 
         return {
-            applicationTypeChosen: (type: 'wl' | 'fraction') => {
-                switch(type) {
-                    case 'wl':
-                        router.replace({ name: 'ApplicationsWL' });
-                    break;
-                    case 'fraction':
-                        router.replace({ name: 'ApplicationsFraction' });
-                    break;
-                }
+            router,
+            route,
+            goBackToSelectScreen: () => {
+                router.replace({ name: 'ApplicationsSelect', params: { mode: "default" } });
             }
         };
     }
@@ -43,26 +63,21 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 @import "../../styles/variables.scss";
+@import "../../styles/ApplicationsSelectOptionBtn.scss";
 
 #applications-select-container {
     min-height: 100%;
     height: auto;
     width: 100%;
     flex: 1 0;
-    display: flex;
-    flex-flow: row nowrap;
-    align-items: center;
-    position: relative;
 
-    & > div:first-child {
-        position: absolute;
-        width: 350px;
+    & > main {
         height: 100%;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background: transparent;
-        z-index: 999;
+        width: 100%;
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+        justify-content: center;
     }
 }
 .applications-select-option {
@@ -104,13 +119,15 @@ export default defineComponent({
 /* MEDIA QUERIES */
 @media screen and (max-width: 768px) {
     #applications-select-container {
-        flex-flow: column nowrap;
+        & > main {
+            flex-flow: column nowrap;
+        }
     }
 }
 @media screen and (min-width: 769px) {
     .applications-select-option {
         &:hover {
-            flex-basis: 75%;
+            flex-basis: 100%;
         }
         &:not(:hover) {
             flex-basis: 0;

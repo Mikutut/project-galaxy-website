@@ -17,7 +17,7 @@ export default defineComponent({
 
         return {
             goBackToSelectScreen: () => {
-                router.replace({ name: 'ApplicationsSelect' });
+                router.replace({ name: 'ApplicationsSelect', params: { mode: "default" } });
             }
         };
     }
@@ -33,7 +33,7 @@ export default defineComponent({
     min-height: 100%;
     height: auto;
     flex: 1 0;
-    background: url("https://cdn.mikut.dev/project-galaxy/img/crime-bg.png"); 
+    background: url("https://cdn.mikut.dev/project-galaxy/img/crime-bg2.png"); 
     background-size: cover; 
     background-repeat: no-repeat;
     background-position: center; 

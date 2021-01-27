@@ -6,8 +6,7 @@
             </a>
             <nav>
                 <button @click="goToTab('Rules')">Regulamin</button>
-                <button @click="goToTab('ApplicationsSelect')">Aplikacje</button>
-                <button>Przycisk 4</button>
+                <button @click="goToTab('ApplicationsSelect', { mode: 'default' })">Aplikacje</button>
                 <button data-discord @click="goToSite('https://discord.gg/Xnnj2z4vte')">Discord</button>
             </nav>
         </div>
@@ -24,8 +23,8 @@ export default defineComponent({
         const router: Router = useRouter();
         return {
             router,
-            goToTab: (pathName: string) => {
-                router.replace({ name: pathName });
+            goToTab: (pathName: string, params?: Record<string, any>) => {
+                router.replace({ name: pathName, params: params });
             },
             goToSite: (url: string) => {
                 window.location.href = url;

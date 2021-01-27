@@ -35,21 +35,9 @@ export default defineComponent({
   font-family: 'Roboto', sans-serif;
 }
 html, body, #app {
-  width: 100vw;
   height: 100vh;
-  overflow: hidden;
-  background: black;
-}
-
-.view-wrapper {
-  display: flex;
-  flex-flow: column nowrap;
-  align-items: center;
-  min-height: 100%;
-  height: 100%;
-  width: 100%;
+  width: 100vw;
   overflow: hidden auto;
-  flex: 1 0;
   background: black;
   &::-webkit-scrollbar {
     width: 4px;
@@ -61,6 +49,15 @@ html, body, #app {
   &::-webkit-scrollbar-track {
     background: rgba(30, 30, 30, 1);
   }
+}
+
+.view-wrapper {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  background: black;
 }
 
 .route-change-fade-enter-active, .route-change-fade-leave-active {

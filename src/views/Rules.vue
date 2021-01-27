@@ -65,9 +65,9 @@ export default defineComponent({
     },
     setup() {
         onMounted(() => {
-            for(const el of document.getElementsByClassName('view-wrapper')) {
-                el.scrollTo({ top: document.getElementById("rules-list-title").offsetTop, left: 0, behavior: 'smooth' });
-            }
+            setTimeout(() => {
+                document.getElementById("app").scrollTo({ top: document.getElementById("rules-list-title").offsetTop, left: 0, behavior: 'smooth' });
+            }, 1000);
         });
         return {};
     }

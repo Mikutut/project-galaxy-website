@@ -57,7 +57,6 @@ header {
         align-items: center;
         padding: 1rem;
         background-color: rgba(0, 0, 0, 0.3);
-        backdrop-filter: blur(2px);
     }
 }
 nav {

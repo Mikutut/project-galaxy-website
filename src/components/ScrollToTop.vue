@@ -14,19 +14,17 @@ export default defineComponent({
         let int: number;
         const scrollDetection = () => {
             int = setInterval(() => {
-                for(const el of document.getElementsByClassName('view-wrapper')) {
-                    el.addEventListener("scroll", () => {
-                        if(el.scrollTop > (el.getElementsByTagName("header")[0].offsetTop + el.getElementsByTagName("header")[0].offsetHeight)) {
+                document.getElementById("app").addEventListener("scroll", () => {
+                        if(document.getElementById("app").scrollTop > (document.getElementsByTagName('header')[0].offsetTop + document.getElementsByTagName('header')[0].offsetHeight)) {
                             if(document.getElementById("scroll-to-top-btn").classList.contains("hidden")) document.getElementById("scroll-to-top-btn").classList.remove("hidden");
                         } else {
                             if(!document.getElementById("scroll-to-top-btn").classList.contains("hidden")) document.getElementById("scroll-to-top-btn").classList.add("hidden");
                         }
                     });
-                }
             }, 1000);
             document.getElementById("scroll-to-top-btn").addEventListener("click", (ev: Event) => {
                 ev.preventDefault();
-                document.getElementsByClassName('view-wrapper')[0].scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+                document.getElementById("app").scrollTo({ top: 0, left: 0, behavior: 'smooth' });
             });
         }
 

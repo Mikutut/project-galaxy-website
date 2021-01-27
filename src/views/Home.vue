@@ -60,7 +60,7 @@ export default defineComponent({
             })
                 .then((res: AxiosResponse<unknown>) => {
                     discordMembersCount.value = JSON.parse(res.request.responseText).members.length; 
-                    discordMembersActiveCount.value = JSON.parse(res.request.responseText).members.filter((mem: any) => mem.status === "online").length;
+                    discordMembersActiveCount.value = JSON.parse(res.request.responseText).members.filter((mem: Record<string, unknown>) => mem.status === "online").length;
                 })
                 .catch(() => {
                     discordMembersCount.value = 0;

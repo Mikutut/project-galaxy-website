@@ -1,27 +1,20 @@
 <template>
     <div class="view-wrapper">
         <Header />
+        <router-view />
         <Footer />
     </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { Router, useRouter } from "vue-router";
 import Header from "../components/Header.vue";
 import Footer from "../components/Footer.vue";
 
 export default defineComponent({
-    name: 'Home',
+    name: 'Applications',
     components: {
-        Header,
-        Footer
-    },
-    setup() {
-        const router: Router = useRouter();
-        return {
-            router
-        };
+        Header, Footer
     }
 })
 </script>

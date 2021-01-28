@@ -1,5 +1,4 @@
 <template>
-    <Header />
     <main class="scroll-to">
         <h1 id="rules-list-title">Regulamin</h1>
         <ol>
@@ -50,24 +49,15 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import Header from "../components/Header.vue";
+import { defineComponent } from "vue";
 
 export default defineComponent({
-    name: 'Rules',
-    components: {
-        Header
-    },
-    setup() {
-        
-        return {};
-    }
-});
+    name: 'Rules'
+})
 </script>
 
 <style lang="scss" scoped>
 @import "../styles/variables.scss";
-
 main {
     counter-reset: paragraph;
     width: 100%;
@@ -77,7 +67,6 @@ main {
     background: $c3;
     padding: 0.5rem;
     flex: 1;
-
     & > h1 {
         font-size: 4rem;
         letter-spacing: 0.5rem;
@@ -95,7 +84,6 @@ main {
             align-items: center;
             margin-top: 2rem;
             border-bottom: 2px dashed black;
-
             &:last-child {
                 border-bottom: none;
             }
@@ -104,7 +92,6 @@ main {
                 display: flex;
                 justify-content: center;
                 align-items: center;
-
                 & > .rules-list-counter {
                     font-size: 2.5rem;
                     color: white;
@@ -141,7 +128,6 @@ main {
         }
     }
 }
-
 /* MEDIA QUERIES */
 @media screen and (max-width: 768px) {
     main {

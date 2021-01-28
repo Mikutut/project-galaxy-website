@@ -1,7 +1,6 @@
 <template>
-  <transition name="route-change-fade">
-    <router-view />
-  </transition>
+  <PageLoader />
+  <router-view />
   <ScrollToTop />
   <Footer />
 </template>
@@ -9,19 +8,23 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import Footer from "./components/Footer.vue";
+import PageLoader from "./components/PageLoader.vue";
 import ScrollToTop from "./components/ScrollToTop.vue";
 
 export default defineComponent({
   name: 'App',
   components: {
-    ScrollToTop, Footer
+    PageLoader, ScrollToTop, Footer
+  },
+  setup() {
+    return {};
   }
-})
+});
 </script>
 
 <style lang="scss">
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-@import "styles/variables.scss";
+@import "./styles/variables.scss";
 
 * {
   box-sizing: border-box;
@@ -30,34 +33,32 @@ export default defineComponent({
   border: none;
   outline: none;
   user-select: none;
-  text-overflow: ellipsis;
   scroll-behavior: smooth;
+  text-overflow: ellipsis;
 }
 :root {
   font-size: 20px;
   font-family: 'Roboto', sans-serif;
 }
 html, body, #app {
-  height: 100vh;
   width: 100vw;
-  overflow: hidden auto;
+  height: 100vh;
   background: black;
+}
+#app {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  overflow: hidden auto;
+
   &::-webkit-scrollbar {
-    width: 4px;
-  }
-  &::-webkit-scrollbar-thumb {
-    background: rgba($c5, 1);
-    border-radius: 10px;
+    width: 8px;
   }
   &::-webkit-scrollbar-track {
-    background: rgba(30, 30, 30, 1);
+    background: rgba(60, 60, 60, 1);
   }
-}
-
-.route-change-fade-enter-active, .route-change-fade-leave-active {
-  transition: opacity .5s;
-}
-.route-change-fade-enter-from, .route-change-fade-leave-to {
-  opacity: 0;
+  &::-webkit-scrollbar-thumb {
+    background: $c5;
+  }
 }
 </style>

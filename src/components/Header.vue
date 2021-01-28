@@ -1,12 +1,12 @@
 <template>
-    <header>
+    <header id="main-header">
         <div>
-            <a href="#" @click.prevent="router.replace({ name: 'Home' })">
-                <img src='https://cdn.mikut.dev/project-galaxy/img/logo-437x437.png' />
+            <a href="#" @click.prevent="router.push({ name: 'Home' })">
+                <img src="https://cdn.mikut.dev/project-galaxy/img/logo-437x437.png" alt="Project Galaxy Logo"/>
             </a>
             <nav>
-                <button @click="goToTab('Rules')">Regulamin</button>
-                <button @click="goToTab('ApplicationsSelect', { mode: 'default' })">Aplikacje</button>
+                <button @click.prevent="router.push({ name: 'Rules' })">Regulamin</button>
+                <button @click.prevent="">Aplikacje</button>
                 <button data-discord @click="goToSite('https://discord.gg/Xnnj2z4vte')">Discord</button>
             </nav>
         </div>
@@ -21,15 +21,10 @@ export default defineComponent({
     name: 'Header',
     setup() {
         const router: Router = useRouter();
-        return {
-            router,
-            goToTab: (pathName: string, params?: Record<string, any>) => {
-                router.replace({ name: pathName, params: params });
-            },
-            goToSite: (url: string) => {
-                window.location.href = url;
-            }
-        };
+
+        return { router, goToSite: (url: string) => {
+            window.location.href = url;
+        } };
     }
 })
 </script>
@@ -37,54 +32,54 @@ export default defineComponent({
 <style lang="scss" scoped>
 @import "../styles/variables.scss";
 
-header {
-    height: 100%;
+#main-header {
+    min-height: 100%;
     width: 100%;
-    background: url("https://cdn.mikut.dev/project-galaxy/img/header-bg2.png"); 
-    background-size: cover; 
-    background-repeat: no-repeat; 
+    background: url("https://cdn.mikut.dev/project-galaxy/img/header-bg2.png");
     background-attachment: scroll;
+    background-size: cover;
     background-position: center;
-    flex: 1 0;
+    background-repeat: no-repeat;
 
     & > div {
-        height: 100%;
         width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.3);
         display: flex;
         flex-flow: column nowrap;
         justify-content: center;
         align-items: center;
-        padding: 1rem;
-        background-color: rgba(0, 0, 0, 0.3);
-    }
-}
-nav {
-    width: 80%;
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-evenly;
-    align-items: center;
-    margin-top: 1rem;
-    & > button {
-        min-width: 150px;
-        background: none;
-        padding: 0.5rem;
-        font-size: 1.2rem;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        color: white;
-        background: rgba(0, 0, 0, 0.6);
-        border-radius: 8px;
-        transition: color .2s, background .2s, transform .2s;
-        cursor: pointer;
+
+        & > nav {
+            width: 80%;
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: space-evenly;
+            align-items: center;
+            margin-top: 1rem;
+
+            & > button {
+                min-width: 150px;
+                background: none;
+                padding: 0.5rem;
+                font-size: 1.2rem;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                color: white;
+                background: rgba(0, 0, 0, 0.6);
+                border-radius: 8px;
+                transition: color .2s, background .2s, transform .2s;
+                cursor: pointer;
+            }
+        }
     }
 }
 
 /* MEDIA QUERIES */
 @media screen and (max-width: 768px) {
-    nav {
+    #main-header > div > nav {
         height: 100%;
         width: 100%;
         flex-flow: column nowrap;
@@ -107,7 +102,7 @@ nav {
     }
 }
 @media screen and (min-width: 769px) {
-    nav > button {
+    #main-header > div > nav > button {
         &:hover {
             text-shadow: none;
             color: white;

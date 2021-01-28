@@ -1,16 +1,16 @@
 <template>
     <div id="applications-select-container" v-if="route.params.mode === 'default'">
         <main>
-            <div @click="router.replace({ name: 'ApplicationsWL' })" class="applications-select-option" style="background-image: url('https://cdn.mikut.dev/project-galaxy/img/wl-bg.png')">
-                <div>
-                    <h1>Whitelist</h1>
-                    <p>Chciałbyś rozpocząć swoją przygodę na serwerze? Kliknij tutaj i złóż podanie o dopisanie do whitelisty!</p>
-                </div>
-            </div>
             <div @click="router.replace({ name: 'ApplicationsSelect', params: { mode: 'fraction' } })" class="applications-select-option" style="background-image: url('https://cdn.mikut.dev/project-galaxy/img/crime-bg2.png')">
                 <div>
                     <h1>Frakcja</h1>
                     <p>Znudziły ci się dotychczasowe prace? Chcesz poczuć powiew świeżości? Kliknij tutaj i złóż podanie o założenie nowej / dołączenie do frakcji!</p>
+                </div>
+            </div>
+            <div @click="router.replace({ name: 'ApplicationsWL' })" class="applications-select-option" style="background-image: url('https://cdn.mikut.dev/project-galaxy/img/wl-bg.png')">
+                <div>
+                    <h1>Whitelist</h1>
+                    <p>Chciałbyś rozpocząć swoją przygodę na serwerze? Kliknij tutaj i złóż podanie o dopisanie do whitelisty!</p>
                 </div>
             </div>
             <div @click="router.replace({ name: 'ApplicationsSupport' })" class="applications-select-option" style="background-image: url('https://cdn.mikut.dev/project-galaxy/img/lesioszef.png')">
@@ -66,8 +66,7 @@ export default defineComponent({
 @import "../../styles/ApplicationsSelectOptionBtn.scss";
 
 #applications-select-container {
-    min-height: 100%;
-    height: auto;
+    height: 100%;
     width: 100%;
     flex: 1 0;
 
@@ -81,9 +80,8 @@ export default defineComponent({
     }
 }
 .applications-select-option {
-    width: 100%;
-    height: 100%;
     flex: 1;
+    height: 100%;
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: scroll;

@@ -3,16 +3,18 @@
     <router-view />
   </transition>
   <ScrollToTop />
+  <Footer />
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import Footer from "./components/Footer.vue";
 import ScrollToTop from "./components/ScrollToTop.vue";
 
 export default defineComponent({
   name: 'App',
   components: {
-    ScrollToTop
+    ScrollToTop, Footer
   }
 })
 </script>
@@ -29,6 +31,7 @@ export default defineComponent({
   outline: none;
   user-select: none;
   text-overflow: ellipsis;
+  scroll-behavior: smooth;
 }
 :root {
   font-size: 20px;
@@ -49,15 +52,6 @@ html, body, #app {
   &::-webkit-scrollbar-track {
     background: rgba(30, 30, 30, 1);
   }
-}
-
-.view-wrapper {
-  display: flex;
-  flex-flow: column nowrap;
-  align-items: center;
-  height: 100vh;
-  width: 100%;
-  background: black;
 }
 
 .route-change-fade-enter-active, .route-change-fade-leave-active {

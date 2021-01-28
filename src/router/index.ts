@@ -56,8 +56,9 @@ const routes: Array<RouteRecordRaw> = [
 
 const scrollBehavior: RouterScrollBehavior = () => {
   return new Promise((res) => {
+    document.getElementById("app").scrollTo({ top: 0, left: 0 });
     setTimeout(() => {
-      document.getElementById("app").scrollTo({ top: document.getElementsByTagName('header')[0].offsetTop + document.getElementsByTagName('header')[0].offsetHeight + 1, left: 0, behavior: 'smooth' });
+      document.getElementById("app").scrollTo({ top: (document.getElementsByClassName('scroll-to')[0] as HTMLElement).offsetTop + 5 ?? 0, left: 0, behavior: 'smooth' });
       res();
     }, 1000);
   });

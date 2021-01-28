@@ -1,67 +1,62 @@
 <template>
-    <div class="view-wrapper">
-        <Header />
-        <main>
-            <h1 id="rules-list-title">Regulamin</h1>
-            <ol>
-                <li>
-                    <div>
-                        <div class="rules-list-counter"></div>
-                        <h2 class="rules-title">Tytuł</h2>
-                    </div>
-                    <p class="rules-description">Opis</p> 
-                </li>
-                <li>
-                    <div>
-                        <div class="rules-list-counter"></div>
-                        <h2 class="rules-title">Tytuł</h2>
-                    </div>
-                    <p class="rules-description">Opis</p> 
-                </li>
-                <li>
-                    <div>
-                        <div class="rules-list-counter"></div>
-                        <h2 class="rules-title">Tytuł</h2>
-                    </div>
-                    <p class="rules-description">Opis</p> 
-                </li>
-                <li>
-                    <div>
-                        <div class="rules-list-counter"></div>
-                        <h2 class="rules-title">Tytuł</h2>
-                    </div>
-                    <p class="rules-description">Opis</p> 
-                </li>
-                <li>
-                    <div>
-                        <div class="rules-list-counter"></div>
-                        <h2 class="rules-title">Tytuł</h2>
-                    </div>
-                    <p class="rules-description">Opis</p> 
-                </li>
-                <li>
-                    <div>
-                        <div class="rules-list-counter"></div>
-                        <h2 class="rules-title">Lesio</h2>
-                    </div>
-                    <p class="rules-description">Szef</p> 
-                </li>
-            </ol>
-        </main>
-        <Footer />
-    </div>
+    <Header />
+    <main class="scroll-to">
+        <h1 id="rules-list-title">Regulamin</h1>
+        <ol>
+            <li>
+                <div>
+                    <div class="rules-list-counter"></div>
+                    <h2 class="rules-title">Tytuł</h2>
+                </div>
+                <p class="rules-description">Opis</p> 
+            </li>
+            <li>
+                <div>
+                    <div class="rules-list-counter"></div>
+                    <h2 class="rules-title">Tytuł</h2>
+                </div>
+                <p class="rules-description">Opis</p> 
+            </li>
+            <li>
+                <div>
+                    <div class="rules-list-counter"></div>
+                    <h2 class="rules-title">Tytuł</h2>
+                </div>
+                <p class="rules-description">Opis</p> 
+            </li>
+            <li>
+                <div>
+                    <div class="rules-list-counter"></div>
+                    <h2 class="rules-title">Tytuł</h2>
+                </div>
+                <p class="rules-description">Opis</p> 
+            </li>
+            <li>
+                <div>
+                    <div class="rules-list-counter"></div>
+                    <h2 class="rules-title">Tytuł</h2>
+                </div>
+                <p class="rules-description">Opis</p> 
+            </li>
+            <li>
+                <div>
+                    <div class="rules-list-counter"></div>
+                    <h2 class="rules-title">Lesio</h2>
+                </div>
+                <p class="rules-description">Szef</p> 
+            </li>
+        </ol>
+    </main>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
 import Header from "../components/Header.vue";
-import Footer from "../components/Footer.vue";
 
 export default defineComponent({
     name: 'Rules',
     components: {
-        Header,
-        Footer
+        Header
     },
     setup() {
         

@@ -38,7 +38,7 @@ export default defineComponent({
 @import "../styles/variables.scss";
 
 header {
-    min-height: 100%;
+    height: 100%;
     width: 100%;
     background: url("https://cdn.mikut.dev/project-galaxy/img/header-bg2.png"); 
     background-size: cover; 

@@ -1,29 +1,24 @@
 <template>
-    <div id="error-wrapper" class="view-wrapper">
+    <div id="error-wrapper">
         <div id="error-text">
             <span id="error-title-1">404</span>
             <span id="error-title-2">Strony nie znaleziono</span>
             <button @click.prevent="router.replace({ name: 'Home' })">Powrót do strony głównej</button>
         </div>
-        <Footer />
     </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { Router, useRouter } from 'vue-router'
-import Footer from "../components/Footer.vue";
 
 export default defineComponent({
     name: 'Error404',
-    components: {
-        Footer
-    },
     setup () {
         const router: Router = useRouter()
         return { router }
     }
-})
+});
 </script>
 
 <style lang="scss" scoped>
@@ -41,6 +36,9 @@ export default defineComponent({
     }
 }
 #error-wrapper {
+    width: 100%;
+    height: 100%;
+    flex: 1 0;
     background: linear-gradient(45deg, rgba(255,0,0,1) 0%, rgba(185,0,0,1) 100%);
     background-size: 200% 200%;
     animation: bgAnim 16s alternate infinite ease;

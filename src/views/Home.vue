@@ -1,50 +1,45 @@
 <template>
-    <div class="view-wrapper">
-        <Header />
-        <main>
-            <section class="home-section">
-                <div>
-                    <h1>Tytuł 1</h1>
-                    <p>Opis</p>
-                </div>
-            </section>
-            <section class="home-section">
-                <div>
-                    <h1>Tytuł 2</h1>
-                    <p>Opis</p>
-                </div>
-            </section>
-            <section class="home-section">
-                <div>
-                    <h1>Tytuł 3</h1>
-                    <p>Opis</p>
-                </div>
-            </section>
-            <section class="home-discord-banner">
-                <div>
-                    <h1>Dołącz do naszego Discorda!</h1>
-                    <h2>Jest nas już <span class="home-discord-banner-members-count">{{ discordMembersCount }}</span>!</h2>
-                    <h3><span class="home-discord-banner-members-count">{{ discordMembersActiveCount }}</span> z nas jest obecnie online!</h3>
-                    <button @click="goToSite('https://discord.gg/Xnnj2z4vte')">Dołącz już teraz!</button>
-                </div>
-            </section>
-        </main>
-        <Footer />
-    </div>
+    <Header />
+    <main class="scroll-to">
+        <section class="home-section">
+            <div>
+                <h1>Tytuł 1</h1>
+                <p>Opis</p>
+            </div>
+        </section>
+        <section class="home-section">
+            <div>
+                <h1>Tytuł 2</h1>
+                <p>Opis</p>
+            </div>
+        </section>
+        <section class="home-section">
+            <div>
+                <h1>Tytuł 3</h1>
+                <p>Opis</p>
+            </div>
+        </section>
+        <section class="home-discord-banner">
+            <div>
+                <h1>Dołącz do naszego Discorda!</h1>
+                <h2>Jest nas już <span class="home-discord-banner-members-count">{{ discordMembersCount }}</span>!</h2>
+                <h3><span class="home-discord-banner-members-count">{{ discordMembersActiveCount }}</span> z nas jest obecnie online!</h3>
+                <button @click="goToSite('https://discord.gg/Xnnj2z4vte')">Dołącz już teraz!</button>
+            </div>
+        </section>
+    </main>
 </template>
 
 <script lang="ts">
-import { defineComponent, Ref, ref, onBeforeMount, onMounted, onBeforeUnmount } from "vue";
+import { defineComponent, Ref, ref, onBeforeMount, onBeforeUnmount } from "vue";
 import { Router, useRouter } from "vue-router";
 import axios, { AxiosResponse } from "axios";
 import Header from "../components/Header.vue";
-import Footer from "../components/Footer.vue";
 
 export default defineComponent({
     name: 'Home',
     components: {
-        Header,
-        Footer
+        Header
     },
     setup() {
         const router: Router = useRouter();

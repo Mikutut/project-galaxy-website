@@ -15,7 +15,7 @@ export default defineComponent({
         const scrollDetection = () => {
             int = setInterval(() => {
                 document.getElementById("app").addEventListener("scroll", () => {
-                        if(document.getElementById("app").scrollTop > (document.getElementsByTagName('header')[0].offsetTop + document.getElementsByTagName('header')[0].offsetHeight)) {
+                        if(document.getElementById("app").scrollTop > (document.getElementsByClassName('scroll-to')[0] as HTMLElement).offsetTop) {
                             if(document.getElementById("scroll-to-top-btn").classList.contains("hidden")) document.getElementById("scroll-to-top-btn").classList.remove("hidden");
                         } else {
                             if(!document.getElementById("scroll-to-top-btn").classList.contains("hidden")) document.getElementById("scroll-to-top-btn").classList.add("hidden");

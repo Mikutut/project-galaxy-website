@@ -1,22 +1,18 @@
 <template>
     <Header />
-    <router-view />
+    <transition name="fade" mode="out-in">
+        <router-view />
+    </transition>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import Header from "../components/Header.vue";
+import Header from "../../components/Header.vue";
 
 export default defineComponent({
-    name: 'Main',
+    name: 'Applications',
     components: {
         Header
     }
 })
 </script>
-
-<style lang="scss" scoped>
-@import "../styles/variables.scss";
-
-
-</style>

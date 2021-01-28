@@ -45,6 +45,7 @@ export default defineComponent({
     flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
+    z-index: 9999;
 
     & > h1 {
         color: $c2;

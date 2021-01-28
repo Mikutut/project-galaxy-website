@@ -1,5 +1,5 @@
 <template>
-    <footer>
+    <footer class="scroll-to">
         <a href="https://mikut.dev">
             <img src="https://cdn.mikut.dev/mikut/img/icon.png" />
         </a>

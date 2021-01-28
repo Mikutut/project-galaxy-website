@@ -1,6 +1,8 @@
 <template>
+  <transition name="fade">
+    <router-view />
+  </transition>
   <PageLoader />
-  <router-view />
   <ScrollToTop />
   <Footer />
 </template>
@@ -15,9 +17,6 @@ export default defineComponent({
   name: 'App',
   components: {
     PageLoader, ScrollToTop, Footer
-  },
-  setup() {
-    return {};
   }
 });
 </script>
@@ -44,21 +43,28 @@ html, body, #app {
   width: 100vw;
   height: 100vh;
   background: black;
+  overflow: hidden;
 }
 #app {
+  overflow: hidden auto;
   display: flex;
   flex-flow: column nowrap;
-  align-items: center;
-  overflow: hidden auto;
 
   &::-webkit-scrollbar {
-    width: 8px;
+    width: 6px;
   }
   &::-webkit-scrollbar-track {
-    background: rgba(60, 60, 60, 1);
+    background: rgba(30, 30, 30, 1);
   }
   &::-webkit-scrollbar-thumb {
     background: $c5;
   }
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter-from, .fade-leave-to {
+  opacity: 0;
 }
 </style>

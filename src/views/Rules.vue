@@ -1,4 +1,5 @@
 <template>
+    <Header />
     <main class="scroll-to">
         <h1 id="rules-list-title">Regulamin</h1>
         <ol>
@@ -50,9 +51,13 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import Header from "../components/Header.vue";
 
 export default defineComponent({
-    name: 'Rules'
+    name: 'Rules',
+    components: {
+        Header
+    }
 })
 </script>
 

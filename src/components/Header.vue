@@ -6,7 +6,7 @@
             </a>
             <nav>
                 <button @click.prevent="router.push({ name: 'Rules' })">Regulamin</button>
-                <button @click.prevent="">Aplikacje</button>
+                <button @click.prevent="router.push({ name: 'ApplicationsSelect', params: { mode: 'default' } })">Aplikacje</button>
                 <button data-discord @click="goToSite('https://discord.gg/Xnnj2z4vte')">Discord</button>
             </nav>
         </div>
@@ -49,6 +49,7 @@ export default defineComponent({
         flex-flow: column nowrap;
         justify-content: center;
         align-items: center;
+        padding: 1rem;
 
         & > nav {
             width: 80%;

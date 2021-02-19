@@ -16,7 +16,7 @@ export default defineComponent({
 
     const thresholdReached: Ref<boolean> = ref(false);
 
-    (document.getElementById("app") as HTMLElement).addEventListener("scroll", (ev: Event) => {
+    (document.getElementById("app") as HTMLElement).addEventListener("scroll", () => {
       const appWrapper: HTMLElement = document.getElementById("app") as HTMLElement;
       const mainHeader: HTMLElement = document.querySelector("header:first-of-type") as HTMLElement;
       if(appWrapper.scrollTop > mainHeader.offsetTop + mainHeader.offsetHeight) {

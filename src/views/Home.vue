@@ -1,18 +1,35 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+  <div class="view-wrapper">
+    <Header />
+    <main data-auto-scroll-to>
+
+    </main>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
+import { defineComponent, onMounted } from "vue";
+import Header from "@/common/components/Header.vue";
+import { manageAutoScroll } from "@/common/scrollManager";
 
 export default defineComponent({
-  name: 'Home',
+  name: 'HomeView',
   components: {
-    HelloWorld,
+    Header
   },
-});
+  setup() {
+    onMounted(() => manageAutoScroll());
+    return {};
+  }
+})
 </script>
+
+<style lang="scss" scoped>
+main {
+  width: 100%;
+  min-height: 100vh;
+  flex: 1 0;
+  display: flex;
+  flex-flow: column nowrap;
+}
+</style>

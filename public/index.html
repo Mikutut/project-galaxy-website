@@ -1,17 +1,22 @@
 <!DOCTYPE html>
-<html lang="">
+<html lang="pl">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <title><%= htmlWebpackPlugin.options.title %></title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Project Galaxy</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <link rel="icon" href="<%= BASE_URL %>favicon.png" />
+    <link rel="shortcut icon" href="<%= BASE_URL %>favicon.png" />
+    <link rel="stylesheet" href="css/all.css" type="text/css" />
   </head>
   <body>
     <noscript>
-      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+      <div style="width:100vw;height:100vh;position:fixed;top:0;left:0;background:black;display:flex;flex-flow:column nowrap;justify-content:center;align-items:center;color:white;">
+        <img src="favicon.png" height="500" width="500" onclick="window.location.reload();" style="cursor:pointer;"/>
+        <h1>Twoja obecna przeglądarka nie obsługuje tej strony internetowej!</h1>
+        <h2>Upewnij się, że posiadasz najnowszą wersję swojej przeglądarki internetowej oraz że obsługa JavaScriptu nie została wyłączona.</h2>
+      </div>
     </noscript>
     <div id="app"></div>
-    <!-- built files will be auto injected -->
   </body>
 </html>

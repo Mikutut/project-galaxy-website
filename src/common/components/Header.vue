@@ -1,0 +1,183 @@
+<template>
+  <header>
+    <div class="header-container">
+      <a @click.prevent="goToHome();">
+        <img class="header-logo" src="@/assets/img/logo.png" />
+      </a>
+      <transition name="nav-bar-switch" mode="out-in">
+        <nav class="header-nav" v-if="navBarState === 'default'">
+          <button @click="toggleNavBarState('gameplay')">Rozgrywka</button>
+          
+          <button>Przycisk</button> 
+          <button>Przycisk</button>
+          <button @click="redirectToDiscordServer();" data-discord-btn>Discord</button>
+        </nav>
+        <nav class="header-nav" v-else-if="navBarState === 'gameplay'">
+          <button @click="changeRoute({ name: 'Rules' })">Regulamin</button>
+          <button>Klawiszologia</button>
+          <button>Słownik pojęć RP</button>
+          <button @click="toggleNavBarState('default')" data-navbarstate-reset-btn>Powrót</button>
+        </nav>
+      </transition>
+    </div>
+  </header>
+</template>
+
+<script lang="ts">
+import { defineComponent, Ref, ref } from "vue";
+import { goToHome, changeRoute } from "@/common/routeHelper";
+
+type NavBarState = "default" | "gameplay";
+
+export default defineComponent({
+  name: 'Header',
+  setup() {
+
+    const navBarState: Ref<NavBarState> = ref("default");
+
+    return {
+      navBarState,
+      toggleNavBarState: (newState: NavBarState) => {
+        navBarState.value = newState;
+      },
+      goToHome,
+      changeRoute,
+      redirectToDiscordServer: () => {
+        window.location.href = "https://discord.gg/Xnnj2z4vte";
+      }
+    };
+  }
+})
+</script>
+
+<style lang="scss" scoped>
+@import "../styles/color-palette.scss";
+
+header {
+  min-height: 100vh;
+  width: 100%;
+  background: no-repeat center/cover scroll url("../../assets/img/header-bg.png");
+}
+
+.header-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  background: hsla(0, 0%, 0%, 0.3);
+}
+.header-logo {
+  height: 600px;
+  transition: transform .3s;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+.header-nav {
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+  align-items: center;
+
+  & > button {
+    min-width: 200px;
+    background: hsla(0, 0%, 0%, 0.6);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 1.2rem;
+    border-radius: 8px;
+    padding: 0.25rem;
+    transition: transform .25s, background .25s;
+    margin: 1rem;
+    cursor: pointer;
+    
+  }
+}
+
+/* VUE TRANSITIONS */
+.nav-bar-switch {
+  &-enter-active, &-leave-active {
+    transition: opacity .3s, transform .25s;
+  }
+  &-enter-from {
+    transform: translateY(25px);
+  }
+  &-enter-to, &-leave-from {
+    transform: translateY(0);
+  }
+  &-enter-from, &-leave-to {
+    opacity: 0;
+  }
+  &-leave-to {
+    transform: translateY(-25px);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .nav-bar-switch {
+    &-enter-from {
+      transform: translateX(25px);
+    }
+    &-enter-to, &-leave-from {
+      transform: translateX(0);
+    }
+    &-leave-to {
+      transform: translateX(-25px);
+    }
+  }
+}
+/* END OF VUE TRANSITIONS */
+
+/* MEDIA QUERIES */
+@media screen and (max-width: 768px) {
+  .header-nav {
+    flex-flow: column nowrap;
+    justify-content: space-evenly;
+    align-items: center;
+
+    & > button {
+      width: 100%;
+      margin: 0;
+      border-radius: 0;
+
+      &[data-discord-btn] {
+        background: map-get($colors, "discord");
+      }
+      &[data-navbarstate-reset-btn] {
+        background: hsl(0, 100%, 50%);
+      }
+
+      &:hover {
+        transform: scale(1);
+      }
+    }
+  }
+}
+@media screen and (min-width: 769px) {
+  .header-nav {
+
+    & > button {
+      &:hover {
+        transform: scale(1.1);
+        background: map-get($colors, "c2");
+
+        &[data-discord-btn] {
+          background: map-get($colors, "discord");
+        }
+        &[data-navbarstate-reset-btn] {
+          background: hsl(0, 100%, 50%);
+        }
+      }
+    }
+  }
+}
+/* END OF MEDIA QUERIES */
+</style>

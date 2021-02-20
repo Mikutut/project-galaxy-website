@@ -1,6 +1,6 @@
 <template>
   <div class="form-input-container">
-    <input :id="inputId" type="text" :placeholder="props.placeHolder" :value="props.value" autocomplete="off" @input="handleInput"/> 
+    <input :id="inputId" type="text" :placeholder="props.placeHolder" :value="props.modelValue" autocomplete="off" @input="emit('update:modelValue', $event.target.value);"/> 
   </div>
 </template>
 
@@ -10,21 +10,17 @@ import { nanoid } from "nanoid";
 
 export default defineComponent({
   name: 'FormInput',
-  props: ["value", "placeHolder"],
-  emits: ["input"],
+  props: ["modelValue", "placeHolder"],
+  emits: ["update:modelValue"],
   setup(props, { emit }) {
-
+    
     const inputId = `mkt-form-input-${nanoid(12)}`;
-
-    console.log(props);
 
     return {
       props,
-      handleInput: () => {
-        emit('input', props.value);
-      },
+      emit,
       inputId
-    }
+    };
   }
 })
 </script>

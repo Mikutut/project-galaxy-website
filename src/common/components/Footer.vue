@@ -23,7 +23,7 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 footer {
-  padding: 0.25rem;
+  padding: 5px;
   width: 100vw;
   background: black;
   display: flex;
@@ -46,9 +46,9 @@ footer {
     }
   }
   & > span {
-    font-size: 0.75rem;
+    font-size: 2vmin;
     color: hsl(0, 0%, 35%);
-    margin-left: 1rem;
+    margin-left: 20px;
   }
 }
 </style>

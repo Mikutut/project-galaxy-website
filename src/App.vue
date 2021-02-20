@@ -24,12 +24,6 @@ export default defineComponent({
     PageLoader,
     ModalsManager
   },
-  setup() {
-
-    return {
-      
-    };
-  }
 });
 </script>
 

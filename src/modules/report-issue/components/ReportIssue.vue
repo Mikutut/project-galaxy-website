@@ -11,10 +11,10 @@
     </div>
     <div v-else-if="issueReportState === 'not-ready'">
       <h1>Formularz zgłoszeniowy dot. problemu ze stroną Project Galaxy</h1>
-      <FormInput :placeHolder="'Twój nick (opcjonalnie)'" v-model="reportIssueData.name" />
-      <FormInput :placeHolder="'Temat (opcjonalnie)'" v-model="reportIssueData.topic" /> 
-      <FormTextarea :placeholder="'Opis problemu'" v-model="reportIssueData.description" />
-      <button :disabled="!reportIssueData.canSend">Wyślij</button>
+      <FormInput v-model="reportIssueData.name" :placeHolder="'Twój nick (opcjonalnie)'"/>
+      <FormInput v-model="reportIssueData.topic" :placeHolder="'Temat (opcjonalnie)'" /> 
+      <FormTextarea v-model="reportIssueData.description" :placeHolder="'Opis problemu'" />
+      <button @click="sendReport();" :disabled="!reportIssueData.canSend">Wyślij</button>
       <button @click="switchModalState('reportIssue')">Ukryj to okno</button>
     </div>
     <div v-else-if="issueReportState === 'sending'">
@@ -35,7 +35,7 @@
 
 <script lang="ts">
 import axios, { AxiosResponse } from "axios";
-import { defineComponent, onBeforeMount, Ref, ref, watch } from "vue";
+import { defineComponent, onBeforeMount, Ref, ref, watch, reactive } from "vue";
 import { switchModalState } from "@/common/modalsManagerHelper";
 import FormInput from "@/common/components/Forms/FormInput.vue";
 import FormTextarea from "@/common/components/Forms/FormTextarea.vue";
@@ -43,8 +43,8 @@ import FormTextarea from "@/common/components/Forms/FormTextarea.vue";
 type IssueReportState = "not-ready" | "sending" | "sent" | "error" | "unavailable" | "checking-for-availability";
 
 interface ReportIssueData {
-  name?: string;
-  topic?: string;
+  name: string;
+  topic: string;
   description: string;
   canSend: boolean;
 }
@@ -58,37 +58,55 @@ export default defineComponent({
   setup() {
 
     const issueReportState: Ref<IssueReportState> = ref("not-ready");
-    const reportIssueData: Ref<ReportIssueData> = ref({
+    const reportIssueData: ReportIssueData = reactive({
+      name: "",
+      topic: "",
       description: "",
       canSend: false
     });
 
     const checkForAvailability = () => {
-      /* issueReportState.value = "checking-for-availability";
+      issueReportState.value = "checking-for-availability";
       axios.get("https://api.mikut.dev/v1/check-availability")
         .then((res: AxiosResponse<unknown>) => {
           if(res.status !== 200) {
             issueReportState.value = "unavailable";
           } else issueReportState.value = "not-ready";
         })
-        .catch(() => issueReportState.value = "unavailable"); */
+        .catch(() => issueReportState.value = "unavailable");
+    };
+
+    const sendReport = () => {
+      issueReportState.value = "sending";
+      const packet = {
+        project: "project-galaxy-website",
+        name: reportIssueData.name,
+        topic: reportIssueData.topic,
+        description: reportIssueData.description
+      };
+      axios.post("https://api.mikut.dev/v1/report-issue", packet)
+        .then((res: AxiosResponse<unknown>) => {
+          if(res.status !== 200) {
+            issueReportState.value = "error";
+          } else issueReportState.value = "sent";
+        })
+        .catch(() => issueReportState.value = "error");
     };
 
     onBeforeMount(() => checkForAvailability());
 
     watch(reportIssueData, (repIssData: ReportIssueData) => {
-      if(repIssData.description !== "") {
-        reportIssueData.value.canSend = true;
-      } else {
-        reportIssueData.value.canSend = false;
-      }
+      if(repIssData.description.length > 0) {
+        reportIssueData.canSend = true;
+      } else reportIssueData.canSend = false;
     });
 
     return {
       switchModalState,
       issueReportState,
       checkForAvailability,
-      reportIssueData
+      reportIssueData,
+      sendReport
     };
   }
 })

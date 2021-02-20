@@ -10,9 +10,4 @@ export const goToSite = (url: string, openNewTab = false) => {
   }
 };
 
-export const isDeviceMobile = (): boolean => {
-  const ua = navigator.platform;
-  const isMobile = !(/Win32|Win64|Windows/.test(ua));
-
-  return isMobile;
-}
+export const isDeviceMobile = !(/Win32|Win64|Windows/.test(navigator.platform)); 

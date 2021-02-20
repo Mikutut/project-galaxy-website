@@ -2,7 +2,7 @@
   <div class="view-wrapper">
     <Header />
     <main data-auto-scroll-to>
-
+      
     </main>
   </div>
 </template>
@@ -27,7 +27,6 @@ export default defineComponent({
 <style lang="scss" scoped>
 main {
   width: 100%;
-  min-height: 100vh;
   flex: 1 0;
   display: flex;
   flex-flow: column nowrap;

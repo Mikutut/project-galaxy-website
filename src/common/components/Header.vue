@@ -2,20 +2,27 @@
   <header>
     <div class="header-container">
       <a @click.prevent="goToHome();">
-        <img class="header-logo" src="@/assets/img/logo.png" />
+        <div class="header-logo-container">
+          <img class="header-logo" src="@/assets/img/logo.png" />
+        </div>
       </a>
       <transition name="nav-bar-switch" mode="out-in">
         <nav class="header-nav" v-if="navBarState === 'default'">
           <button @click="toggleNavBarState('gameplay')">Rozgrywka</button>
-          
-          <button>Przycisk</button> 
-          <button>Przycisk</button>
+          <button @click="toggleNavBarState('applications')">Aplikacje</button>
+          <button @click="switchModalState('connectingToServer');" data-joinserver-btn>Dołącz na serwer</button> 
           <button @click="redirectToDiscordServer();" data-discord-btn>Discord</button>
         </nav>
         <nav class="header-nav" v-else-if="navBarState === 'gameplay'">
           <button @click="changeRoute({ name: 'Rules' })">Regulamin</button>
-          <button>Klawiszologia</button>
-          <button>Słownik pojęć RP</button>
+          <button @click="changeRoute({ name: 'Keys' })">Klawiszologia</button>
+          <button @click="changeRoute({ name: 'RPHandbook' })">Słownik pojęć RP</button>
+          <button @click="toggleNavBarState('default')" data-navbarstate-reset-btn>Powrót</button>
+        </nav>
+        <nav class="header-nav" v-else-if="navBarState === 'applications'">
+          <button>Podanie o obywatelstwo</button>
+          <button>Szukasz pracy?</button>
+          <button @click="switchModalState('reportIssue')">Zgłoś błąd na stronie</button>
           <button @click="toggleNavBarState('default')" data-navbarstate-reset-btn>Powrót</button>
         </nav>
       </transition>
@@ -26,8 +33,10 @@
 <script lang="ts">
 import { defineComponent, Ref, ref } from "vue";
 import { goToHome, changeRoute } from "@/common/routeHelper";
+import { goToSite } from "@/common/misc";
+import { switchModalState } from "@/common/modalsManagerHelper";
 
-type NavBarState = "default" | "gameplay";
+type NavBarState = "default" | "gameplay" | "applications";
 
 export default defineComponent({
   name: 'Header',
@@ -44,7 +53,9 @@ export default defineComponent({
       changeRoute,
       redirectToDiscordServer: () => {
         window.location.href = "https://discord.gg/Xnnj2z4vte";
-      }
+      },
+      goToSite,
+      switchModalState
     };
   }
 })
@@ -62,27 +73,38 @@ header {
 .header-container {
   width: 100%;
   height: 100%;
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr auto;
   background: hsla(0, 0%, 0%, 0.3);
 }
+.header-logo-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .header-logo {
-  height: 600px;
+  height: 50vmax;
+  max-height: 600px;
   transition: transform .3s;
   cursor: pointer;
+  text-align: center;
 
   &:hover {
     transform: scale(1.1);
   }
 }
 .header-nav {
+  height: 100%;
   width: 100%;
   display: flex;
   flex-flow: row wrap;
   justify-content: space-evenly;
   align-items: center;
+  justify-self: flex-end;
+  padding: 2rem;
 
   & > button {
     min-width: 200px;
@@ -142,6 +164,7 @@ header {
     flex-flow: column nowrap;
     justify-content: space-evenly;
     align-items: center;
+    padding: 0;
 
     & > button {
       width: 100%;
@@ -150,6 +173,9 @@ header {
 
       &[data-discord-btn] {
         background: map-get($colors, "discord");
+      }
+      &[data-joinserver-btn] {
+        background: hsla(120, 100%, 30%, 1);
       }
       &[data-navbarstate-reset-btn] {
         background: hsl(0, 100%, 50%);
@@ -171,6 +197,9 @@ header {
 
         &[data-discord-btn] {
           background: map-get($colors, "discord");
+        }
+        &[data-joinserver-btn] {
+          background: hsla(120, 100%, 30%, 1);
         }
         &[data-navbarstate-reset-btn] {
           background: hsl(0, 100%, 50%);

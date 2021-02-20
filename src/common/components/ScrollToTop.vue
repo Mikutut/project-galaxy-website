@@ -1,6 +1,6 @@
 <template>
   <transition name="scroll-to-top-btn-hide">
-    <button @click="windUp();" class="scroll-to-top-btn" v-if="thresholdReached">
+    <button @click="scrollToTop();" class="scroll-to-top-btn" v-if="thresholdReached">
       <i class="fas fa-arrow-up"></i>
       <p>Powrót do góry</p>
     </button>
@@ -9,6 +9,7 @@
 
 <script lang="ts">
 import { defineComponent, Ref, ref } from "vue";
+import { scrollToTop } from "@/common/scrollManager";
 
 export default defineComponent({
   name: 'ScrollToTopBtn',
@@ -19,16 +20,14 @@ export default defineComponent({
     (document.getElementById("app") as HTMLElement).addEventListener("scroll", () => {
       const appWrapper: HTMLElement = document.getElementById("app") as HTMLElement;
       const mainHeader: HTMLElement = document.querySelector("header:first-of-type") as HTMLElement;
-      if(appWrapper.scrollTop > mainHeader.offsetTop + mainHeader.offsetHeight) {
+      if(appWrapper.scrollTop >= mainHeader.offsetTop + mainHeader.offsetHeight) {
         thresholdReached.value = true;
       } else thresholdReached.value = false;
     });
 
     return {
       thresholdReached,
-      windUp: () => {
-        (document.getElementById("app") as HTMLElement).scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-      }
+      scrollToTop
     };
   }
 })
@@ -42,8 +41,8 @@ export default defineComponent({
   flex-flow: row nowrap;
   position: fixed;
   z-index: 9900;
-  bottom: 3vmin;
-  right: 3vmax;
+  bottom: 2rem;
+  right: 2rem;
   height: 50px;
   width: 50px;
   text-align: center;
@@ -54,18 +53,9 @@ export default defineComponent({
   padding: 0.25rem;
   cursor: pointer;
 
-  &:hover {
-    width: 200px;
-
-    & > p {
-      width: 100%;
-      transform: scale(1);
-    }
-  }
-
   & > i {
     color: map-get($colors, "c1");
-    font-size: 2rem;
+    font-size: 1.75rem;
   }
   & > p {
     display: inline-block;
@@ -88,4 +78,19 @@ export default defineComponent({
   }
 }
 /* END OF VUE TRANSITIONS */
+
+/* MEDIA QUERIES */
+@media screen and (min-width: 769px) {
+  .scroll-to-top-btn {
+    &:hover {
+      width: 200px;
+
+      & > p {
+        width: 100%;
+        transform: scale(1);
+      }
+    }
+  }
+}
+/* END OF MEDIA QUERIES */
 </style>

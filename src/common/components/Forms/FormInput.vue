@@ -1,25 +1,21 @@
 <template>
   <div class="form-input-container">
-    <input :id="inputId" type="text" :placeholder="props.placeHolder" :value="props.modelValue" autocomplete="off" @input="emit('update:modelValue', $event.target.value);"/> 
+    <input type="text" :placeholder="props.placeHolder" :value="props.modelValue" autocomplete="off" @input="emit('update:modelValue', $event.target.value);"/> 
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { nanoid } from "nanoid";
 
 export default defineComponent({
   name: 'FormInput',
   props: ["modelValue", "placeHolder"],
   emits: ["update:modelValue"],
   setup(props, { emit }) {
-    
-    const inputId = `mkt-form-input-${nanoid(12)}`;
 
     return {
       props,
-      emit,
-      inputId
+      emit
     };
   }
 })

@@ -1,10 +1,9 @@
 <template>
-  <textarea :id="textareaId" :placeholder="props.placeHolder" v-model="mV" autocomplete="off" @input="emit('update:modelValue', $event.target.value);"></textarea> 
+  <textarea :placeholder="props.placeHolder" v-model="mV" autocomplete="off" @input="emit('update:modelValue', $event.target.value);"></textarea> 
 </template>
 
 <script lang="ts">
 import { defineComponent, ref, Ref } from "vue";
-import { nanoid } from "nanoid";
 
 export default defineComponent({
   name: 'FormTextarea',
@@ -12,13 +11,11 @@ export default defineComponent({
   emits: ["update:modelValue"],
   setup(props, { emit }) {
 
-    const textareaId = `mkt-form-textarea-${nanoid(12)}`;
     const mV: Ref<string> = ref(props.modelValue);
 
     return {
       props,
       emit,
-      textareaId,
       mV
     };
   }

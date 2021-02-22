@@ -67,7 +67,7 @@ export default defineComponent({
 
     const checkForAvailability = () => {
       issueReportState.value = "checking-for-availability";
-      axios.get("https://api.mikut.dev/v1/check-availability")
+      axios.get("https://api.mikut.dev/v1/info")
         .then((res: AxiosResponse<unknown>) => {
           if(res.status !== 200) {
             issueReportState.value = "unavailable";

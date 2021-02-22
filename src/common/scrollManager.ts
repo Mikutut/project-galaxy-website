@@ -30,8 +30,6 @@ export const manageAutoScroll = () => {
       }), 1000);
     }
   }
-
- 
 };
 
 watch(isPageLoaded, (iPL: boolean) => {

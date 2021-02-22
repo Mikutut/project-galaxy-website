@@ -14,17 +14,25 @@
 
 <script lang="ts">
 import { defineComponent, Ref, ref } from "vue";
+import { useStore } from "vuex";
+import { key } from "@/store/index";
 
 export default defineComponent({
   name: 'PageLoader',
   setup() {
     
+    const store = useStore(key);
+
     const pageLoaded: Ref<boolean> = ref(false);
 
     document.addEventListener("readystatechange", () => {
       if(document.readyState === "complete") {
         pageLoaded.value = true;
-      } else pageLoaded.value = false;
+        store.commit('switchPageLoaded', pageLoaded.value);
+      } else { 
+        pageLoaded.value = false;
+        store.commit('switchPageLoaded', pageLoaded.value);
+      }
     });
 
     return {

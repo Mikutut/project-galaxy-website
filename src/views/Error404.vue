@@ -51,14 +51,14 @@ main {
     width: 100%;
   }
   & > p {
-    font-size: 5vmin;
+    font-size: 5vh;
     color: white;
     text-align: center;
     width: 100%;
   }
   & > button {
     width: 50%;
-    font-size: 5vmin;
+    font-size: 5vh;
     color: white;
     display: flex;
     justify-content: center;

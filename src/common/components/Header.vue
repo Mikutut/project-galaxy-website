@@ -9,7 +9,8 @@
       <transition name="nav-bar-switch" mode="out-in">
         <nav class="header-nav" v-if="navBarState === 'default'">
           <button @click="toggleNavBarState('gameplay')">Rozgrywka</button>
-          <button @click="toggleNavBarState('applications')">Aplikacje</button>
+          <button @click="changeRoute({ name: 'Applications' })">Aplikacje</button>
+          <button @click="switchModalState('reportIssue')">Zgłoś błąd na stronie</button>
           <button @click="switchModalState('connectingToServer');" data-joinserver-btn>Dołącz na serwer</button> 
           <button @click="redirectToDiscordServer();" data-discord-btn>Discord</button>
         </nav>
@@ -17,12 +18,6 @@
           <button @click="changeRoute({ name: 'Rules' })">Regulamin</button>
           <button @click="changeRoute({ name: 'Keys' })">Klawiszologia</button>
           <button @click="changeRoute({ name: 'RPHandbook' })">Słownik pojęć RP</button>
-          <button @click="toggleNavBarState('default')" data-navbarstate-reset-btn>Powrót</button>
-        </nav>
-        <nav class="header-nav" v-else-if="navBarState === 'applications'">
-          <button>Podanie o obywatelstwo</button>
-          <button>Szukasz pracy?</button>
-          <button @click="switchModalState('reportIssue')">Zgłoś błąd na stronie</button>
           <button @click="toggleNavBarState('default')" data-navbarstate-reset-btn>Powrót</button>
         </nav>
       </transition>
@@ -36,7 +31,7 @@ import { goToHome, changeRoute } from "@/common/routeHelper";
 import { goToSite } from "@/common/misc";
 import { switchModalState } from "@/common/modalsManagerHelper";
 
-type NavBarState = "default" | "gameplay" | "applications";
+type NavBarState = "default" | "gameplay";
 
 export default defineComponent({
   name: 'Header',
@@ -114,7 +109,7 @@ header {
     justify-content: center;
     align-items: center;
     text-align: center;
-    font-size: 1.2rem;
+    font-size: 3vh;
     border-radius: 8px;
     padding: 0.25rem;
     transition: transform .25s, background .25s;

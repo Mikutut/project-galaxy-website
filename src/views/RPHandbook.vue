@@ -127,7 +127,8 @@ main {
   justify-content: center;
   align-items: center;
   text-align: center;
-  font-size: 8vmin;
+  font-size: 8vh;
+  padding: 0.25rem;
   color: white;
   text-transform: uppercase;
   letter-spacing: 0.5rem;

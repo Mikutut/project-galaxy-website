@@ -402,13 +402,14 @@ main {
   justify-content: center;
   align-items: center;
   text-align: center;
-  font-size: 8vmin;
+  font-size: 8vh;
   color: white;
   text-transform: uppercase;
   letter-spacing: 0.5rem;
   width: 100%;
   overflow: hidden;
   word-break: break-word;
+  padding: 0.25rem;
 }
 
 .sections-list {

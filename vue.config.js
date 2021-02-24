@@ -1,3 +1,3 @@
 module.exports = {
-  publicPath: '/project-galaxy-v2/' // ''
+  publicPath: '/project-galaxy-v2/' /* '' */
 }

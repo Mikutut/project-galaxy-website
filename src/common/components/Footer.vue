@@ -46,7 +46,7 @@ footer {
     }
   }
   & > span {
-    font-size: 2vmin;
+    font-size: 2vh;
     color: hsl(0, 0%, 35%);
     margin-left: 20px;
   }

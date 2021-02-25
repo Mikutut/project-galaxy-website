@@ -104,7 +104,7 @@ main {
   text-align: center;
 
   & > span {
-    font-size: 1.5rem;
+    font-size: 3.5vh;
     color: white;
     letter-spacing: 0.25rem;
 

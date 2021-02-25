@@ -46,9 +46,7 @@ export default defineComponent({
       },
       goToHome,
       changeRoute,
-      redirectToDiscordServer: () => {
-        window.location.href = "https://discord.gg/Xnnj2z4vte";
-      },
+      redirectToDiscordServer: () => window.location.href = "https://discord.gg/Xnnj2z4vte",
       goToSite,
       switchModalState
     };

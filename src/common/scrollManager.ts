@@ -11,23 +11,23 @@ export const scrollToTop = () => {
   });
 };
 
-export const manageAutoScroll = () => {
+export const manageAutoScroll = (sTP = true, timeout = 1000) => {
   if(isPageLoaded.value) {
     const scrollable: HTMLElement | null = document.querySelector("[data-auto-scroll-to]:first-of-type");
-    scrollToTop();
+    if(sTP) scrollToTop();
     if(scrollable !== null) {
       setTimeout(() => (document.getElementById("app") as HTMLElement).scrollTo({
         top: scrollable.offsetTop,
         left: 0,
         behavior: 'smooth'
-      }), 1000);
+      }), timeout);
     } else {
       const footer: HTMLElement = document.querySelector("[data-auto-scroll-to-fallback]") as HTMLElement;
       setTimeout(() => (document.getElementById("app") as HTMLElement).scrollTo({
         top: footer.offsetTop,
         left: 0,
         behavior: 'smooth'
-      }), 1000);
+      }), timeout);
     }
   }
 };

@@ -4,8 +4,8 @@
     <main data-auto-scroll-to>
       <div class="applications-select-wrapper">
         <h1>Wybierz rodzaj zgłoszenia</h1>
-        <!-- <transition name="applications-select-choices-wrapper-fade"> -->
-          <section class="applications-select-choices-wrapper" v-if="choiceWrapperMode === 'main'">
+        <transition name="applications-select-choices-wrapper-fade" mode="out-in">
+          <section @click="changeChoiceWrapperMode('fractions')" class="applications-select-choices-wrapper" v-if="choiceWrapperMode === 'main'">
             <article class="applications-select-choice-container" data-choice="fractions">
               <div class="applications-select-choice-inner-container">
                 <h1>Szukasz pracy?</h1>
@@ -29,7 +29,46 @@
               </div>
             </article>
           </section> 
-        <!-- </transition> -->
+          <section class="applications-select-choices-wrapper" v-else-if="choiceWrapperMode === 'fractions'">
+            <button class="applications-select-choices-wrapper-btn" @click="changeChoiceWrapperMode('main')" data-choices-wrapper-btn-mode="back">Powrót</button>
+            <article class="applications-select-choice-container" data-choice="fractions-lspd">
+              <div class="applications-select-choice-inner-container">
+                <h1>LSPD</h1>
+                <p>
+                  Smacznej kawusi
+                  <br />
+                  Jebać kapusi
+                  <br />
+                  Policjant mnie dusi
+                </p>
+              </div>
+            </article>
+            <article class="applications-select-choice-container" data-choice="fractions-ems">
+              <div class="applications-select-choice-inner-container">
+                <h1>EMS</h1>
+                <p>
+                  Panie, daj pan plasterka!
+                </p>
+              </div>
+            </article>
+            <article class="applications-select-choice-container" data-choice="fractions-lsc">
+              <div class="applications-select-choice-inner-container">
+                <h1>LSC</h1>
+                <p>
+                  To ile za FT brabusa?
+                </p>
+              </div>
+            </article>
+            <article class="applications-select-choice-container" data-choice="fractions-lspo">
+              <div class="applications-select-choice-inner-container">
+                <h1>LSPO</h1>
+                <p>
+                  Można lickę na długą?
+                </p>
+              </div>
+            </article>
+          </section>
+        </transition>
       </div>
     </main>
   </div>
@@ -54,7 +93,10 @@ export default defineComponent({
 
     return {
       choiceWrapperMode,
-      changeChoiceWrapperMode: (mode: ChoiceWrapperMode) => choiceWrapperMode.value = mode
+      changeChoiceWrapperMode: (mode: ChoiceWrapperMode) => { 
+        choiceWrapperMode.value = mode;
+        manageAutoScroll(false, 0);
+      }
     };
   }
 });
@@ -64,7 +106,9 @@ export default defineComponent({
 @import "../../../common/styles/color-palette.scss";
 
 $backgrounds: (
-  "fractions": url("../../../assets/img/crime-bg2.png") 
+  "fractions": url("../../../assets/img/crime-bg2.png"),
+  "fractions-lspd": url("../../../assets/img/lspd-bg.png"),
+  "fractions-ems": url("../../../assets/img/ems-bg.png")
 );
 
 main {
@@ -99,16 +143,43 @@ main {
   flex-flow: column nowrap;
   align-items: center;
 }
+.applications-select-choices-wrapper-btn {
+  width: 100%;
+  background: transparent;
+  padding: 0.25rem;
+  font-size: 3vh;
+  color: white;
+  transition: background .25s;
+
+  &:hover {
+    &[data-choices-wrapper-btn-mode="back"] {
+      background: red;
+    }
+  }
+}
 .applications-select-choice-container {
   min-height: 500px;
   height: 100%;
   width: 100%;
   flex: 1 0;
   background: no-repeat center/cover scroll;
+  background-color: rgb(50, 50, 50);
 
   &[data-choice="fractions"] {
     background-image: map-get($backgrounds, "fractions");
   }
+  &[data-choice="fractions-lspd"] {
+    background-image: map-get($backgrounds, "fractions-lspd");
+  }
+  &[data-choice="fractions-ems"] {
+    background-image: map-get($backgrounds, "fractions-ems");
+  }
+  /* &[data-choice="fractions-lsc"] {
+    background-image: map-get($backgrounds, "fractions-lsc");
+  }
+  &[data-choice="fractions-lspo"] {
+    background-image: map-get($backgrounds, "fractions-lspo");
+  } */
 }
 .applications-select-choice-inner-container {
   height: 100%;
@@ -142,10 +213,33 @@ main {
   }
 }
 
+/* VUE TRANSITIONS */
+.applications-select-choices-wrapper-fade {
+  &-enter-active, &-leave-active {
+    transition: opacity .3s, transform .3s;
+  }
+  &-enter-from {
+    transform: translateX(-100%);
+  }
+  &-enter-to, &-leave-from {
+    transform: translateX(0);
+  }
+  &-enter-from, &-leave-to {
+    opacity: 0;
+  }
+  &-leave-to {
+    transform: translateX(100%);
+  }
+}
+/* END OF VUE TRANSITIONS */
+
 /* MEDIA QUERIES */
 @media screen and (max-width: 768px) {
-  .applications-select-choice-inner-container {
-    background: hsla(0, 0%, 0%, 0.8);
+  .applications-select-choices-wrapper-btn {
+    
+    &[data-choices-wrapper-btn-mode="back"] {
+      background: red;
+    }
   }
 }
 /* END OF MEDIA QUERIES */

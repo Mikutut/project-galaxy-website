@@ -32,7 +32,7 @@ textarea {
   background: transparent;
   overflow: hidden;
   color: hsl(0, 0%, 60%);
-  font-size: 3vmin; 
+  font-size: 3vh; 
   padding: 0.25rem 0;
   border: 1px solid transparent;
   transition: border .35s;

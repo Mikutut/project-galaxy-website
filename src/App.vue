@@ -114,10 +114,8 @@ html, body {
     opacity: 0;
   }
 }
+/* END OF VUE TRANSITIONS */
 
 /* MEDIA QUERIES */
-</style>
-
-<style lang="scss" scoped>
-
+/* END OF MEDIA QUERIES */
 </style>

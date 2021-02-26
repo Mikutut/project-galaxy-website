@@ -55,7 +55,7 @@ export default defineComponent({
     background: transparent;
     overflow: hidden;
     color: hsl(0, 0%, 60%);
-    font-size: 3vmin; 
+    font-size: 3vh; 
     padding: 0.25rem 0;
   }
 }

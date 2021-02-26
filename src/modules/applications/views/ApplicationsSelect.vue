@@ -2,74 +2,82 @@
   <div class="view-wrapper">
     <Header />
     <main data-auto-scroll-to>
-      <div class="applications-select-wrapper">
-        <h1>Wybierz rodzaj zgłoszenia</h1>
-        <transition name="applications-select-choices-wrapper-fade" mode="out-in">
-          <section @click="changeChoiceWrapperMode('fractions')" class="applications-select-choices-wrapper" v-if="choiceWrapperMode === 'main'">
-            <article class="applications-select-choice-container" data-choice="fractions">
-              <div class="applications-select-choice-inner-container">
-                <h1>Szukasz pracy?</h1>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  <br />
-                  Morbi ultrices commodo diam, quis facilisis sem finibus id.
-                  <br />
-                  Nullam eu imperdiet justo, in varius sapien. In quis eleifend ipsum. 
-                  <br />
-                  Fusce tristique sodales sem, eu consequat massa mattis quis. 
-                  <br />
-                  Donec condimentum elementum ante, at pharetra nisi varius non. 
-                  <br />
-                  Donec molestie consequat quam, eget auctor ante hendrerit a. 
-                  <br />
-                  Donec sit amet tellus sed magna hendrerit volutpat. 
-                  <br />
-                  Suspendisse justo massa, sodales in tempor a, placerat non nulla.
-                </p>
-              </div>
-            </article>
-          </section> 
-          <section class="applications-select-choices-wrapper" v-else-if="choiceWrapperMode === 'fractions'">
-            <button class="applications-select-choices-wrapper-btn" @click="changeChoiceWrapperMode('main')" data-choices-wrapper-btn-mode="back">Powrót</button>
-            <article class="applications-select-choice-container" data-choice="fractions-lspd">
-              <div class="applications-select-choice-inner-container">
-                <h1>LSPD</h1>
-                <p>
-                  Smacznej kawusi
-                  <br />
-                  Jebać kapusi
-                  <br />
-                  Policjant mnie dusi
-                </p>
-              </div>
-            </article>
-            <article class="applications-select-choice-container" data-choice="fractions-ems">
-              <div class="applications-select-choice-inner-container">
-                <h1>EMS</h1>
-                <p>
-                  Panie, daj pan plasterka!
-                </p>
-              </div>
-            </article>
-            <article class="applications-select-choice-container" data-choice="fractions-lsc">
-              <div class="applications-select-choice-inner-container">
-                <h1>LSC</h1>
-                <p>
-                  To ile za FT brabusa?
-                </p>
-              </div>
-            </article>
-            <article class="applications-select-choice-container" data-choice="fractions-lspo">
-              <div class="applications-select-choice-inner-container">
-                <h1>LSPO</h1>
-                <p>
-                  Można lickę na długą?
-                </p>
-              </div>
-            </article>
-          </section>
-        </transition>
-      </div>
+      <transition name="applications-select-wrapper-fade" mode="out-in">
+        <div class="applications-select-wrapper" v-if="verificationStatus === 'idle'" :data-verification-status="verificationStatus">
+          <div class="applications-select-wrapper-inner-container">
+            <h1>Witaj!</h1>
+            <h2>Czy posiadasz już swoje konto zgłoszeniowe?</h2>
+          </div>
+        </div>
+        <div class="applications-select-wrapper" v-else-if="verificationStatus === 'passed'">
+          <h1>Wybierz rodzaj zgłoszenia</h1>
+          <transition name="applications-select-choices-wrapper-fade" mode="out-in">
+            <section @click="changeChoiceWrapperMode('fractions')" class="applications-select-choices-wrapper" v-if="choiceWrapperMode === 'main'">
+              <article class="applications-select-choice-container" data-choice="fractions">
+                <div class="applications-select-choice-inner-container">
+                  <h1>Szukasz pracy?</h1>
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    <br />
+                    Morbi ultrices commodo diam, quis facilisis sem finibus id.
+                    <br />
+                    Nullam eu imperdiet justo, in varius sapien. In quis eleifend ipsum. 
+                    <br />
+                    Fusce tristique sodales sem, eu consequat massa mattis quis. 
+                    <br />
+                    Donec condimentum elementum ante, at pharetra nisi varius non. 
+                    <br />
+                    Donec molestie consequat quam, eget auctor ante hendrerit a. 
+                    <br />
+                    Donec sit amet tellus sed magna hendrerit volutpat. 
+                    <br />
+                    Suspendisse justo massa, sodales in tempor a, placerat non nulla.
+                  </p>
+                </div>
+              </article>
+            </section> 
+            <section class="applications-select-choices-wrapper" v-else-if="choiceWrapperMode === 'fractions'">
+              <button class="applications-select-choices-wrapper-btn" @click="changeChoiceWrapperMode('main')" data-choices-wrapper-btn-mode="back">Powrót</button>
+              <article class="applications-select-choice-container" data-choice="fractions-lspd" @click="redirectToForm('fractions-lspd')">
+                <div class="applications-select-choice-inner-container">
+                  <h1>LSPD</h1>
+                  <p>
+                    Smacznej kawusi
+                    <br />
+                    Jebać kapusi
+                    <br />
+                    Policjant mnie dusi
+                  </p>
+                </div>
+              </article>
+              <article class="applications-select-choice-container" data-choice="fractions-ems">
+                <div class="applications-select-choice-inner-container">
+                  <h1>EMS</h1>
+                  <p>
+                    Panie, daj pan plasterka!
+                  </p>
+                </div>
+              </article>
+              <article class="applications-select-choice-container" data-choice="fractions-lsc">
+                <div class="applications-select-choice-inner-container">
+                  <h1>LSC</h1>
+                  <p>
+                    To ile za FT brabusa?
+                  </p>
+                </div>
+              </article>
+              <article class="applications-select-choice-container" data-choice="fractions-lspo">
+                <div class="applications-select-choice-inner-container">
+                  <h1>LSPO</h1>
+                  <p>
+                    Można lickę na długą?
+                  </p>
+                </div>
+              </article>
+            </section>
+          </transition>
+        </div>
+      </transition>
     </main>
   </div>
 </template>
@@ -78,6 +86,9 @@
 import { defineComponent, onMounted, Ref, ref } from "vue";
 import { manageAutoScroll } from "@/common/scrollManager";
 import Header from "@/common/components/Header.vue";
+import { useRouter, Router } from "vue-router";
+import { FormType, VerificationStatus } from "../common/formHelper";
+import { changeRoute } from "@/common/routeHelper";
 
 type ChoiceWrapperMode = "main" | "fractions";
 
@@ -87,16 +98,25 @@ export default defineComponent({
     Header
   },
   setup() {
+    const router: Router = useRouter();
     const choiceWrapperMode: Ref<ChoiceWrapperMode> = ref("main");
+    const verificationStatus: Ref<VerificationStatus> = ref("idle");
 
     onMounted(() => manageAutoScroll());
 
     return {
       choiceWrapperMode,
+      verificationStatus,
       changeChoiceWrapperMode: (mode: ChoiceWrapperMode) => { 
         choiceWrapperMode.value = mode;
         manageAutoScroll(false, 0);
-      }
+      },
+      redirectToForm: (formType: FormType) => changeRoute({
+        name: 'ApplicationsForm',
+        params: {
+          type: formType
+        }
+      })
     };
   }
 });
@@ -105,7 +125,7 @@ export default defineComponent({
 <style lang="scss" scoped>
 @import "../../../common/styles/color-palette.scss";
 
-$backgrounds: (
+$applications-backgrounds: (
   "fractions": url("../../../assets/img/crime-bg2.png"),
   "fractions-lspd": url("../../../assets/img/lspd-bg.png"),
   "fractions-ems": url("../../../assets/img/ems-bg.png")
@@ -125,15 +145,32 @@ main {
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
+  background: no-repeat center/cover scroll;
+  background-image: url("../../../assets/img/crime-bg3.png");
+}
 
-  & > h1 {
-    font-size: 5vh;
+.applications-select-wrapper-inner-container {
+  width: 100%;
+  height: 100%;
+  flex: 1 0;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+
+  & h1, & h2 {
     color: white;
     padding: 0.25rem;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
+  }
+  & h1 {
+    font-size: 5vh;
+  }
+  & h2 {
+    font-size: 3vh;
   }
 }
 .applications-select-choices-wrapper {
@@ -148,6 +185,7 @@ main {
   background: transparent;
   padding: 0.25rem;
   font-size: 3vh;
+  letter-spacing: 0.1rem;
   color: white;
   transition: background .25s;
 
@@ -163,22 +201,22 @@ main {
   width: 100%;
   flex: 1 0;
   background: no-repeat center/cover scroll;
-  background-color: rgb(50, 50, 50);
+  background-color: hsl(0, 0%, 20%);
 
   &[data-choice="fractions"] {
-    background-image: map-get($backgrounds, "fractions");
+    background-image: map-get($applications-backgrounds, "fractions");
   }
   &[data-choice="fractions-lspd"] {
-    background-image: map-get($backgrounds, "fractions-lspd");
+    background-image: map-get($applications-backgrounds, "fractions-lspd");
   }
   &[data-choice="fractions-ems"] {
-    background-image: map-get($backgrounds, "fractions-ems");
+    background-image: map-get($applications-backgrounds, "fractions-ems");
   }
   /* &[data-choice="fractions-lsc"] {
-    background-image: map-get($backgrounds, "fractions-lsc");
+    background-image: map-get($applications-backgrounds, "fractions-lsc");
   }
   &[data-choice="fractions-lspo"] {
-    background-image: map-get($backgrounds, "fractions-lspo");
+    background-image: map-get($applications-backgrounds, "fractions-lspo");
   } */
 }
 .applications-select-choice-inner-container {
@@ -215,6 +253,24 @@ main {
 
 /* VUE TRANSITIONS */
 .applications-select-choices-wrapper-fade {
+  &-enter-active, &-leave-active {
+    transition: opacity .3s, transform .3s;
+  }
+  &-enter-from {
+    transform: translateX(-100%);
+  }
+  &-enter-to, &-leave-from {
+    transform: translateX(0);
+  }
+  &-enter-from, &-leave-to {
+    opacity: 0;
+  }
+  &-leave-to {
+    transform: translateX(100%);
+  }
+}
+
+.applications-select-wrapper-fade {
   &-enter-active, &-leave-active {
     transition: opacity .3s, transform .3s;
   }

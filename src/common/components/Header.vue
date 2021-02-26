@@ -9,7 +9,7 @@
       <transition name="nav-bar-switch" mode="out-in">
         <nav class="header-nav" v-if="navBarState === 'default'">
           <button @click="toggleNavBarState('gameplay')">Rozgrywka</button>
-          <button @click="changeRoute({ name: 'Applications' })">Aplikacje</button>
+          <button @click="toggleNavBarState('applications')">Aplikacje</button>
           <button @click="switchModalState('reportIssue')">Zgłoś błąd na stronie</button>
           <button @click="switchModalState('connectingToServer');" data-joinserver-btn>Dołącz na serwer</button> 
           <button @click="redirectToDiscordServer();" data-discord-btn>Discord</button>
@@ -18,6 +18,12 @@
           <button @click="changeRoute({ name: 'Rules' })">Regulamin</button>
           <button @click="changeRoute({ name: 'Keys' })">Klawiszologia</button>
           <button @click="changeRoute({ name: 'RPHandbook' })">Słownik pojęć RP</button>
+          <button @click="toggleNavBarState('default')" data-navbarstate-reset-btn>Powrót</button>
+        </nav>
+        <nav class="header-nav" v-else-if="navBarState === 'applications'">
+          <button>Dodaj konto zgłoszeniowe</button>
+          <button>Edytuj informacje na koncie</button>
+          <button @click="changeRoute({ name: 'Applications' })">Wyślij zgłoszenie</button>
           <button @click="toggleNavBarState('default')" data-navbarstate-reset-btn>Powrót</button>
         </nav>
       </transition>
@@ -31,7 +37,7 @@ import { goToHome, changeRoute } from "@/common/routeHelper";
 import { goToSite } from "@/common/misc";
 import { switchModalState } from "@/common/modalsManagerHelper";
 
-type NavBarState = "default" | "gameplay";
+type NavBarState = "default" | "gameplay" | "applications";
 
 export default defineComponent({
   name: 'Header',

@@ -401,17 +401,16 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
+  min-width: 0;
   text-align: center;
-  font-size: 8vh;
+  font-size: calc(1rem + 4vw);
+  padding: 0.25rem;
   color: white;
   text-transform: uppercase;
-  letter-spacing: 0.5rem;
+  letter-spacing: 0.25rem;
   width: 100%;
   overflow: hidden;
-  word-break: break-word;
-  padding: 0.25rem;
 }
-
 .sections-list {
   width: 100%;
   flex: 1 0;
@@ -435,7 +434,7 @@ main {
   align-items: center;
 
   & > .section-title {
-    font-size: 1.5rem;
+    font-size: calc(1rem + 1.75vw);
     color: white;
     display: flex;
     justify-content: center;
@@ -480,7 +479,7 @@ main {
   }
 }
 .rule-counter {
-  font-size: 1.2rem;
+  font-size: calc(1rem + 0.75vw);
   color: white;
   font-weight: bold;
   text-align: center;
@@ -490,7 +489,7 @@ main {
   }
 }
 .rule-description {
-  font-size: 1rem;
+  font-size: calc(1rem + 0.25vw);
   color: white;
   text-align: center;
   width: 75%;

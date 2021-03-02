@@ -43,7 +43,7 @@ main {
   background: hsla(0, 0%, 0%, 0.6);
 
   & > h1 {
-    font-size: 8vmin;
+    font-size: calc(1rem + 4vw);
     color: red;
     text-align: center;
     text-transform: uppercase;
@@ -51,14 +51,14 @@ main {
     width: 100%;
   }
   & > p {
-    font-size: 5vh;
+    font-size: calc(1rem + 2vw);
     color: white;
     text-align: center;
     width: 100%;
   }
   & > button {
     width: 50%;
-    font-size: 5vh;
+    font-size: calc(1rem + 1vw);
     color: white;
     display: flex;
     justify-content: center;

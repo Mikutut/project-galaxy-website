@@ -9,7 +9,6 @@
       <transition name="nav-bar-switch" mode="out-in">
         <nav class="header-nav" v-if="navBarState === 'default'">
           <button @click="toggleNavBarState('gameplay')">Rozgrywka</button>
-          <button @click="toggleNavBarState('applications')">Aplikacje</button>
           <button @click="switchModalState('reportIssue')">Zgłoś błąd na stronie</button>
           <button @click="switchModalState('connectingToServer');" data-joinserver-btn>Dołącz na serwer</button> 
           <button @click="redirectToDiscordServer();" data-discord-btn>Discord</button>
@@ -18,12 +17,6 @@
           <button @click="changeRoute({ name: 'Rules' })">Regulamin</button>
           <button @click="changeRoute({ name: 'Keys' })">Klawiszologia</button>
           <button @click="changeRoute({ name: 'RPHandbook' })">Słownik pojęć RP</button>
-          <button @click="toggleNavBarState('default')" data-navbarstate-reset-btn>Powrót</button>
-        </nav>
-        <nav class="header-nav" v-else-if="navBarState === 'applications'">
-          <button>Dodaj konto zgłoszeniowe</button>
-          <button>Edytuj informacje na koncie</button>
-          <button @click="changeRoute({ name: 'Applications' })">Wyślij zgłoszenie</button>
           <button @click="toggleNavBarState('default')" data-navbarstate-reset-btn>Powrót</button>
         </nav>
       </transition>
@@ -85,8 +78,8 @@ header {
   align-items: center;
 }
 .header-logo {
-  height: 50vmax;
-  max-height: 600px;
+  width: 100%;
+  max-width: 600px;
   transition: transform .3s;
   cursor: pointer;
   text-align: center;
@@ -106,16 +99,16 @@ header {
   padding: 2rem;
 
   & > button {
-    min-width: 200px;
+    min-width: 250px;
     background: hsla(0, 0%, 0%, 0.6);
     color: white;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-    font-size: 3vh;
+    font-size: calc(1rem + 0.5vw);
     border-radius: 8px;
-    padding: 0.25rem;
+    padding: 0.5rem;
     transition: transform .25s, background .25s;
     margin: 1rem;
     cursor: pointer;

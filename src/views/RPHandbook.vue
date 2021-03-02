@@ -126,15 +126,15 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
+  min-width: 0;
   text-align: center;
-  font-size: 8vh;
+  font-size: calc(1rem + 4vw);
   padding: 0.25rem;
   color: white;
   text-transform: uppercase;
-  letter-spacing: 0.5rem;
+  letter-spacing: 0.25rem;
   width: 100%;
   overflow: hidden;
-  word-break: break-word;
 }
 
 /* .sections-list {
@@ -200,13 +200,13 @@ main {
   }
 }
 .definition-title {
-  font-size: 1.2rem;
+  font-size: calc(1rem + 1vw);
   color: white;
   font-weight: bold;
   text-align: center;
 }
 .definition-description {
-  font-size: 1rem;
+  font-size: calc(1rem + 0.5vw);
   color: white;
   text-align: center;
   width: 75%;

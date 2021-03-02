@@ -193,6 +193,7 @@ main {
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
+  text-align: center;
   background: map-get($colors, "c3");
 }
 
@@ -200,15 +201,15 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
+  min-width: 0;
   text-align: center;
-  font-size: 8vh;
+  font-size: calc(1rem + 4vw);
   padding: 0.25rem;
   color: white;
   text-transform: uppercase;
-  letter-spacing: 0.5rem;
+  letter-spacing: 0.25rem;
   width: 100%;
   overflow: hidden;
-  word-break: break-word;
 }
 
 .sections-list {
@@ -234,7 +235,7 @@ main {
   align-items: center;
 
   & > .section-title {
-    font-size: 1.5rem;
+    font-size: calc(1rem + 2vw);
     color: white;
     display: flex;
     justify-content: center;
@@ -272,13 +273,13 @@ main {
   }
 }
 .key-bind {
-  font-size: 1.2rem;
+  font-size: calc(1rem + 1vw);
   color: white;
   font-weight: bold;
   text-align: center;
 }
 .key-description {
-  font-size: 1rem;
+  font-size: calc(1rem + 0.5vw);
   color: white;
   text-align: center;
   width: 75%;

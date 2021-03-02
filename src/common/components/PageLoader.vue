@@ -5,7 +5,6 @@
         <img src="@/assets/img/logo.png" />
       </div>
       <div class="metadata-container">
-        <div class="progress-bar"></div>
         <span>Trwa ładowanie...</span>
       </div>
     </main>
@@ -48,15 +47,6 @@ display: flex;
 <style lang="scss" scoped>
 @import "../styles/color-palette.scss";
 
-@keyframes progressBarAnim {
-  from {
-    left: -100%;
-    transform: translateX(100%);
-  } to {
-    left: 100%;
-    transform: translateX(0);
-  }
-}
 @keyframes textGlow {
   from {
     opacity: 1;
@@ -90,7 +80,7 @@ main {
   text-align: center;
 
   & > img {
-    height: 500px;
+    height: 30rem;
     min-height: 0;
   }
 }
@@ -104,33 +94,11 @@ main {
   text-align: center;
 
   & > span {
-    font-size: 3.5vh;
+    font-size: calc(1rem + 2vw);
     color: white;
     letter-spacing: 0.25rem;
 
     animation: textGlow 3s alternate infinite linear;
-  }
-}
-.progress-bar {
-  width: 50%;
-  height: 8px;
-  border: 1px solid white;
-  border-radius: 8px;
-  z-index: 5;
-  margin: 2rem;
-  overflow: hidden;
-
-  &::before {
-    content: "";
-    display: block;
-    z-index: 4;
-    position: relative;
-    left: -100%;
-    top: 0;
-    width: 100px;
-    height: 100%;
-    background: map-get($colors, "c2");
-    animation: progressBarAnim 5s infinite linear;
   }
 }
 

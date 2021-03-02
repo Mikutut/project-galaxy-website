@@ -4,8 +4,6 @@ import RulesView from "@/views/Rules.vue";
 import KeysView from "@/views/Keys.vue";
 import RPHandbookView from "@/views/RPHandbook.vue";
 import Error404View from "@/views/Error404.vue";
-import ApplicationsSelectView from "@/modules/applications/views/ApplicationsSelect.vue";
-import ApplicationsFormView from "@/modules/applications/views/ApplicationsForm.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -27,17 +25,6 @@ const routes: Array<RouteRecordRaw> = [
     path: '/rp-handbook',
     name: 'RPHandbook',
     component: RPHandbookView
-  },
-  {
-    path: '/applications',
-    name: 'Applications',
-    component: ApplicationsSelectView
-  },
-  {
-    path: '/application-form',
-    name: 'ApplicationsForm',
-    component: ApplicationsFormView,
-    props: true
   },
   {
     path: '/:pathMatch(.*)*',

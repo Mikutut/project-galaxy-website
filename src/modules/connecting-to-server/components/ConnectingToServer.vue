@@ -72,7 +72,7 @@ main {
   & > h1 {
     color: white;
     text-align: center;
-    font-size: 6vh;
+    font-size: calc(1rem + 2vw);
   }
 }
 .connection-timeout, .connection-device-not-supported {
@@ -89,10 +89,10 @@ main {
     margin: 0.5rem 0;
   }
   & > h1 {
-    font-size: 4vh;
+    font-size: calc(1rem + 1.25vw);
   }
   & > h2 {
-    font-size: 3vh;
+    font-size: calc(1rem + 1vw);
   }
   & > button {
     width: 80%;
@@ -100,7 +100,7 @@ main {
     border: 1px solid transparent;
     background: transparent;
     color: white;
-    font-size: 3vh;
+    font-size: calc(1rem + 1.25vw);
     display: flex;
     justify-content: center;
     align-items: center;

@@ -1,24 +1,5 @@
-# prjglx-website-2.0
+# Tu miał być kod źródłowy strony internetowej Project Galaxy (najprawdopodobniej już martwego)
 
-## Project setup
-```
-yarn install
-```
+## Nie zamierzam w dalszym ciągu nad nią pracować, także czerpcie z kodu źródłowego do woli
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
-
-### Compiles and minifies for production
-```
-yarn build
-```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### [Mikut](https://mikut.dev) 2020-2021

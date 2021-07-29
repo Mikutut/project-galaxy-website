@@ -12,19 +12,9 @@ const routes: Array<RouteRecordRaw> = [
     component: HomeView
   },
   {
-    path: '/rules',
-    name: 'Rules',
-    component: RulesView
-  },
-  {
     path: '/keys',
     name: 'Keys',
     component: KeysView
-  },
-  {
-    path: '/rp-handbook',
-    name: 'RPHandbook',
-    component: RPHandbookView
   },
   {
     path: '/:pathMatch(.*)*',

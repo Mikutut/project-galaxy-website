@@ -9,104 +9,33 @@
     <div v-else-if="issueReportState === 'checking-for-availability'">
       <h1>Sprawdzanie dostępności...</h1>
     </div>
-    <div v-else-if="issueReportState === 'not-ready'">
-      <h1>Formularz zgłoszeniowy dot. problemu ze stroną Project Galaxy</h1>
-      <FormInput v-model="reportIssueData.name" :placeHolder="'Twój nick (opcjonalnie)'"/>
-      <FormInput v-model="reportIssueData.topic" :placeHolder="'Temat (opcjonalnie)'" /> 
-      <FormTextarea v-model="reportIssueData.description" :placeHolder="'Opis problemu'" />
-      <button @click="sendReport();" :disabled="!reportIssueData.canSend">Wyślij</button>
-      <button @click="switchModalState('reportIssue')">Ukryj to okno</button>
-    </div>
-    <div v-else-if="issueReportState === 'sending'">
-      <h1>Wysyłanie zgłoszenia...</h1>
-      <h2>Prosimy o odrobinę cierpliwości</h2>
-    </div>
-    <div v-else-if="issueReportState === 'sent'">
-      <h1>Zgłoszenie zostało pomyślnie wysłane!</h1>
-      <button @click="switchModalState('reportIssue')">Ukryj to okno</button>
-    </div>
-    <div v-else-if="issueReportState === 'error'">
-      <h1>Wystąpił błąd podczas wysyłania zgłoszenia</h1>
-      <h2>Spróbuj ponowne później lub przekaż nam swoje niezadowolenie poprzez nasz serwer Discord.</h2>
-      <button @click="switchModalState('reportIssue')">Ukryj to okno</button>
-    </div>
   </main>
 </template>
 
 <script lang="ts">
-import axios, { AxiosResponse } from "axios";
-import { defineComponent, onBeforeMount, Ref, ref, watch, reactive } from "vue";
+import { defineComponent, onBeforeMount, Ref, ref } from "vue";
 import { switchModalState } from "@/common/modalsManagerHelper";
-import FormInput from "@/common/components/Forms/FormInput.vue";
-import FormTextarea from "@/common/components/Forms/FormTextarea.vue";
 
 type IssueReportState = "not-ready" | "sending" | "sent" | "error" | "unavailable" | "checking-for-availability";
 
-interface ReportIssueData {
-  name: string;
-  topic: string;
-  description: string;
-  canSend: boolean;
-}
-
 export default defineComponent({
   name: 'ReportIssueModal',
-  components: {
-    FormInput,
-    FormTextarea
-  },
+  components: {},
   setup() {
 
     const issueReportState: Ref<IssueReportState> = ref("not-ready");
-    const reportIssueData: ReportIssueData = reactive({
-      name: "",
-      topic: "",
-      description: "",
-      canSend: false
-    });
 
     const checkForAvailability = () => {
       issueReportState.value = "checking-for-availability";
-      axios.get("https://api.mikut.dev/v1/info")
-        .then((res: AxiosResponse<unknown>) => {
-          if(res.status !== 200) {
-            issueReportState.value = "unavailable";
-          } else issueReportState.value = "not-ready";
-        })
-        .catch(() => issueReportState.value = "unavailable");
-    };
-
-    const sendReport = () => {
-      issueReportState.value = "sending";
-      const packet = {
-        project: "project-galaxy-website",
-        name: reportIssueData.name,
-        topic: reportIssueData.topic,
-        description: reportIssueData.description
-      };
-      axios.post("https://api.mikut.dev/v1/report-issue", packet)
-        .then((res: AxiosResponse<unknown>) => {
-          if(res.status !== 200) {
-            issueReportState.value = "error";
-          } else issueReportState.value = "sent";
-        })
-        .catch(() => issueReportState.value = "error");
+      issueReportState.value = "unavailable";
     };
 
     onBeforeMount(() => checkForAvailability());
 
-    watch(reportIssueData, (repIssData: ReportIssueData) => {
-      if(repIssData.description.length > 0) {
-        reportIssueData.canSend = true;
-      } else reportIssueData.canSend = false;
-    });
-
     return {
       switchModalState,
-      issueReportState,
       checkForAvailability,
-      reportIssueData,
-      sendReport
+			issueReportState
     };
   }
 })

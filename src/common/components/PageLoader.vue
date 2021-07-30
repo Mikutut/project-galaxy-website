@@ -2,7 +2,7 @@
   <transition name="page-loader-fade">
     <main v-if="!pageLoaded">
       <div class="logo-container">
-        <img src="@/assets/img/logo.png" />
+        <!-- <img src="@/assets/img/logo.png" /> -->
       </div>
       <div class="metadata-container">
         <span>Trwa ładowanie...</span>

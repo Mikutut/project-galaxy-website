@@ -30,7 +30,7 @@ export default defineComponent({
 main {
   width: 100%;
   flex: 1 0;
-  background: no-repeat center/cover scroll url("../assets/img/crime-bg3.png");
+  background: no-repeat center/cover scroll;
 }
 
 .e404-container {

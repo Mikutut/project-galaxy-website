@@ -24,7 +24,7 @@ const routes: Array<RouteRecordRaw> = [
 ];
 
 const router = createRouter({
-  history: createWebHistory(`/project-galaxy-v2/`), /* createWebHistory(), */
+  history: createWebHistory(),
   routes
 });
 

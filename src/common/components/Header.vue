@@ -3,7 +3,7 @@
     <div class="header-container">
       <a @click.prevent="goToHome();">
         <div class="header-logo-container">
-          <img class="header-logo" src="@/assets/img/logo.png" />
+          <!-- <img class="header-logo" src="@/assets/img/logo.png" /> -->
         </div>
       </a>
       <transition name="nav-bar-switch" mode="out-in">
@@ -59,7 +59,7 @@ export default defineComponent({
 header {
   min-height: 100vh;
   width: 100%;
-  background: no-repeat center/cover scroll url("../../assets/img/header-bg.png");
+  background: no-repeat center/cover scroll;
 }
 
 .header-container {
